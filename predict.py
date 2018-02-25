@@ -10,7 +10,6 @@ import keras
 import json
 import time
 import sys
-
 import os
 
 from keras.models import load_model
