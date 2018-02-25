@@ -87,4 +87,4 @@ model.fit_generator(
         validation_steps=240)
 
 # to save model weights
-model.save_weights('./models/trained_model_3.h5')
+model.save_weights('./models/trained_model3.h5')
