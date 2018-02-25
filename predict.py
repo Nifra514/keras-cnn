@@ -100,7 +100,7 @@ model.add(Dropout(0.2))
 
 #fully connected
 model.add(Flatten())
-model.add(Dense(35000))
+model.add(Dense(256))
 model.add(Activation('relu'))
 model.add(Dropout(0.5))
 model.add(Dense(26))
@@ -137,28 +137,3 @@ for _file in dir_files:
     p_classes = model.predict_classes(images)
     print (p_classes)
     print (_file+" : "+names[p_classes[0]])
-
-
-# # predicting images
-
-
-
-
-
-
-
-
-# # predicting multiple images at once
-# img = image.load_img('./dataset/testing/angelina_jolie/AAJ142_cropped_ori resized.jpg', target_size=(img_width, img_height))
-# y = image.img_to_array(img)
-# y = np.expand_dims(y, axis=0)
-
-# # pass the list of multiple images np.vstack()
-# images = np.vstack([x, y])
-# classes = model.predict_classes(images, batch_size=32)
-# print(classes)
-
-# # print the classes, the images belong to
-# print classes
-# print classes[0]
-# print classes[0][0]

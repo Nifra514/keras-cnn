@@ -1,6 +1,7 @@
 from keras.preprocessing.image import ImageDataGenerator
 from keras.models import Sequential 
 from keras.layers import Conv2D, MaxPooling2D
+# from keras.callbacks import ModelCheckpoint
 from keras.layers import Activation, Dropout, Flatten, Dense
 from keras import backend as K
 
@@ -37,7 +38,7 @@ model.add(Dropout(0.2))
 
 #fully connected
 model.add(Flatten())
-model.add(Dense(35000))
+model.add(Dense(256))
 model.add(Activation('relu'))
 model.add(Dropout(0.5))
 model.add(Dense(26))
@@ -61,7 +62,7 @@ train_datagen = ImageDataGenerator(
 test_datagen = ImageDataGenerator(rescale=1. / 255)
 
 training = train_datagen.flow_from_directory(
-    'Dataset',
+    'test',
     target_size=(img_width, img_height),
     batch_size=64,
     class_mode='categorical',
@@ -71,20 +72,22 @@ training = train_datagen.flow_from_directory(
     )
 
 testing = test_datagen.flow_from_directory(
-        'Dataset',
+        'test',
         target_size=(img_width, img_height),
         batch_size=64,
         class_mode='categorical',
         # color_mode='grayscale'
 
 )
-
+# checkpointer = ModelCheckpoint(filepath='./models/trained_model_3.h5', verbose=1, save_best_only=True)
 model.fit_generator(
         training,
         steps_per_epoch=500,
-        epochs=25,
+        epochs=15,
         validation_data=testing,
-        validation_steps=200)
+        validation_steps=200,
+        # callbacks=[checkpointer]
+        )
 
 # to save model weights
 model.save_weights('./models/trained_model_3.h5')
