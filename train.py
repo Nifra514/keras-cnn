@@ -37,7 +37,7 @@ model.add(Dropout(0.2))
 
 #fully connected
 model.add(Flatten())
-model.add(Dense(93600))
+model.add(Dense(35000))
 model.add(Activation('relu'))
 model.add(Dropout(0.5))
 model.add(Dense(26))
@@ -63,7 +63,7 @@ test_datagen = ImageDataGenerator(rescale=1. / 255)
 training = train_datagen.flow_from_directory(
     'Dataset',
     target_size=(img_width, img_height),
-    batch_size=128,
+    batch_size=64,
     class_mode='categorical',
     # color_mode='grayscale',
     # save_to_dir='preview',
@@ -73,7 +73,7 @@ training = train_datagen.flow_from_directory(
 testing = test_datagen.flow_from_directory(
         'Dataset',
         target_size=(img_width, img_height),
-        batch_size=128,
+        batch_size=64,
         class_mode='categorical',
         # color_mode='grayscale'
 
@@ -81,10 +81,10 @@ testing = test_datagen.flow_from_directory(
 
 model.fit_generator(
         training,
-        steps_per_epoch=610,
-        epochs=30,
+        steps_per_epoch=500,
+        epochs=25,
         validation_data=testing,
-        validation_steps=240)
+        validation_steps=200)
 
 # to save model weights
 model.save_weights('./models/trained_model_3.h5')

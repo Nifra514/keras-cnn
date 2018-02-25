@@ -100,7 +100,7 @@ model.add(Dropout(0.2))
 
 #fully connected
 model.add(Flatten())
-model.add(Dense(93600))
+model.add(Dense(35000))
 model.add(Activation('relu'))
 model.add(Dropout(0.5))
 model.add(Dense(26))
