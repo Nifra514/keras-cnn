@@ -62,17 +62,17 @@ train_datagen = ImageDataGenerator(
 test_datagen = ImageDataGenerator(rescale=1. / 255)
 
 training = train_datagen.flow_from_directory(
-    'test',
-    target_size=(img_width, img_height),
-    batch_size=64,
-    class_mode='categorical',
-    # color_mode='grayscale',
-    # save_to_dir='preview',
-    # save_format='jpeg'
-    )
+        'Dataset',
+        target_size=(img_width, img_height),
+        batch_size=64,
+        class_mode='categorical',
+        # color_mode='grayscale',
+        # save_to_dir='preview',
+        # save_format='jpeg'
+        )
 
 testing = test_datagen.flow_from_directory(
-        'test',
+        'Dataset',
         target_size=(img_width, img_height),
         batch_size=64,
         class_mode='categorical',
