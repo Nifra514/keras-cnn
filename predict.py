@@ -70,10 +70,7 @@ names = {
 
 _dir =  sys.argv[1]
 
-# load the model we saved
-# model = load_model('./models/1516228873.3_fixedepos_model.h5')
-# infile = open('./models/1516262902.05_last-1_convnet_model.json')
-# model = keras.models.model_from_json(json.load(infile))
+
 #input
 model = Sequential()
 model.add(Conv2D(32, (3, 3), input_shape=input_shape,padding='same'))
