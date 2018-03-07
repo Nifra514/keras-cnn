@@ -67,9 +67,7 @@ names = {
     
 }
 
-
 _dir =  sys.argv[1]
-
 
 #input
 model = Sequential()
@@ -103,14 +101,12 @@ model.add(Dropout(0.5))
 model.add(Dense(26))
 model.add(Activation('softmax'))
 
-
 #load model 
 model.load_weights('./models/trained_model_3.h5')
 
 model.compile(loss='categorical_crossentropy',
               optimizer='adam',
               metrics=['categorical_accuracy'])
-
 
 
 dir_files = glob.glob(_dir+'*.jpg')
