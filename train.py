@@ -11,6 +11,7 @@ if K.image_data_format() == 'channels_first':
     input_shape = (3, img_width, img_height)
 else:
     input_shape = (img_width, img_height, 3)
+
 #input
 model = Sequential()
 model.add(Conv2D(32, (3, 3), input_shape=input_shape,padding='same'))
@@ -48,8 +49,6 @@ model.compile(loss='categorical_crossentropy',
               optimizer='adam',
               metrics=['categorical_accuracy'])
 
-
-
 train_datagen = ImageDataGenerator(
         rescale=1./255,
         rotation_range=40,
@@ -77,8 +76,8 @@ testing = test_datagen.flow_from_directory(
         batch_size=64,
         class_mode='categorical',
         # color_mode='grayscale'
-
-)
+        )
+        
 # checkpointer = ModelCheckpoint(filepath='./models/trained_model_3.h5', verbose=1, save_best_only=True)
 model.fit_generator(
         training,
