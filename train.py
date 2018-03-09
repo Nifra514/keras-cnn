@@ -1,7 +1,6 @@
 from keras.preprocessing.image import ImageDataGenerator
 from keras.models import Sequential 
 from keras.layers import Conv2D, MaxPooling2D
-# from keras.callbacks import ModelCheckpoint
 from keras.layers import Activation, Dropout, Flatten, Dense
 from keras import backend as K
 
@@ -78,7 +77,6 @@ testing = test_datagen.flow_from_directory(
         # color_mode='grayscale'
         )
         
-# checkpointer = ModelCheckpoint(filepath='./models/trained_model_3.h5', verbose=1, save_best_only=True)
 model.fit_generator(
         training,
         steps_per_epoch=500,
