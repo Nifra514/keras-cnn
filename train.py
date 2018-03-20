@@ -88,3 +88,4 @@ model.fit_generator(
 
 # to save model weights
 model.save_weights('./models/trained_model_3.h5')
+#hello
