@@ -118,15 +118,13 @@ for _file in dir_files:
     img = image.load_img(file_path, target_size=(img_width, img_height))
     
     x = image.img_to_array(img)
-    #x = cv2.cvtColor(x, cv2.COLOR_BGR2GRAY)
+    
     x = np.expand_dims(x, axis=0)
-
-    # score = model.evaluate(x, x, batch_size=32)
 
     images = np.vstack([x])
 
     classes = model.predict(images)
     
     p_classes = model.predict_classes(images)
-    print (p_classes)
+    # print (p_classes)
     print (_file+" : "+names[p_classes[0]])
