@@ -1,5 +1,9 @@
 models/*
 preview/*
-UI/*
 Dataset/*
 test/*
+main1.py/*
+test.py/*
+cam.py/*
+cam.ui/*
+Video/*
