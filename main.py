@@ -119,11 +119,11 @@ class exam(QtWidgets.QMainWindow):
     def snap(self):
         self.x1,self.y1,self.x2,self.y2 = 400,40,600,290
         img_cropped = self.image[self.y1:self.y2, self.x1:self.x2] 
-        cv2.imwrite('predict/sign.jpg', img_cropped)
+        cv2.imwrite('predict/capture.jpg', img_cropped)
 
         bpath = os.getcwd()
         fpath = 'predict'
-        path = os.path.join(bpath,fpath,'sign.jpg')
+        path = os.path.join(bpath,fpath,'capture.jpg')
 
         self.lbl_img_snap.setPixmap(QtGui.QPixmap(path))
         self.lbl_img_snap.show()
