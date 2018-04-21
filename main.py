@@ -100,7 +100,7 @@ class exam(QtWidgets.QMainWindow):
     def start_cam(self):
         self.cap = cv2.VideoCapture(0)
         self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT,480)
-        self.cap.set(cv2.CAP_PROP_FRAME_WIDTH,640)
+        self.cap.set(cv2.CAP_PROP_FRAME_WIDTH,720)
 
         self.timer1 = QtCore.QTimer(self)
         self.timer1.timeout.connect(self.update_frame)
@@ -112,14 +112,21 @@ class exam(QtWidgets.QMainWindow):
 
         if ret:                
             x1, y1, x2, y2 = 400, 40, 600, 290
-            cv2.rectangle(self.image, (x1, y1), (x2, y2), (255,0,0), 2)
+            cv2.rectangle(self.image, (x1, y1), (x2, y2), (0,0,255), 1)
 
         self.displayImage(self.image, 1)
         
     def snap(self):
         self.x1,self.y1,self.x2,self.y2 = 400,40,600,290
         img_cropped = self.image[self.y1:self.y2, self.x1:self.x2] 
-        cv2.imwrite('capture.jpg', img_cropped)
+        cv2.imwrite('predict/capture.jpg', img_cropped)
+
+        bpath = os.getcwd()
+        fpath = 'predict'
+        path = os.path.join(bpath,fpath,'capture.jpg')
+
+        self.lbl_img_snap.setPixmap(QtGui.QPixmap(path))
+        self.lbl_img_snap.show()
 
     def displayImage(self, img, window=1):
         qformat = QtGui.QImage.Format_Indexed8
