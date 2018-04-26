@@ -89,15 +89,7 @@ class exam(QtWidgets.QMainWindow):
         self.timer = QtCore.QTimer()
         self.timer.timeout.connect(self.update_time)
         self.timer.start(10)
-        self.btn_start.clicked.connect(self.start_cam)
-        self.btn_snap.clicked.connect(self.snap)
-
-    def update_time(self):
-        # self.q_lcdn.display(QtCore.QTime.currentTime().toString())
-        self.lbl_time.setText(QtCore.QTime.currentTime().toString())
-        self.lbl_date.setText(QtCore.QDate.currentDate().toString())
-
-    def start_cam(self):
+        
         self.cap = cv2.VideoCapture(0)
         self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT,480)
         self.cap.set(cv2.CAP_PROP_FRAME_WIDTH,720)
@@ -105,6 +97,21 @@ class exam(QtWidgets.QMainWindow):
         self.timer1 = QtCore.QTimer(self)
         self.timer1.timeout.connect(self.update_frame)
         self.timer1.start(5)
+        self.btn_snap.clicked.connect(self.snap)
+
+    def update_time(self):
+        # self.q_lcdn.display(QtCore.QTime.currentTime().toString())
+        self.lbl_time.setText(QtCore.QTime.currentTime().toString())
+        self.lbl_date.setText(QtCore.QDate.currentDate().toString())
+
+    # def start_cam(self):
+    #     self.cap = cv2.VideoCapture(0)
+    #     self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT,480)
+    #     self.cap.set(cv2.CAP_PROP_FRAME_WIDTH,720)
+
+    #     self.timer1 = QtCore.QTimer(self)
+    #     self.timer1.timeout.connect(self.update_frame)
+    #     self.timer1.start(5)
 
     def update_frame(self):
         ret, self.image = self.cap.read()
