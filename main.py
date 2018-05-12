@@ -10,7 +10,7 @@ import pymysql
 import hashlib
 import numpy as np
 import cv2
-import tutorial
+# import tutorial
 
 class login(QtWidgets.QMainWindow):
     def __init__(self):
@@ -118,13 +118,13 @@ class exam(QtWidgets.QMainWindow):
         self.image = cv2.flip(self.image, 1)
 
         if ret:                
-            x1, y1, x2, y2 = 400, 40, 600, 290
+            x1, y1, x2, y2 = 20, 20, 220, 270
             cv2.rectangle(self.image, (x1, y1), (x2, y2), (0,0,255), 1)
 
         self.displayImage(self.image, 1)
         
     def snap(self):
-        self.x1,self.y1,self.x2,self.y2 = 400,40,600,290
+        self.x1,self.y1,self.x2,self.y2 = 20, 20, 220, 270
         img_cropped = self.image[self.y1:self.y2, self.x1:self.x2] 
         cv2.imwrite('predict/capture.jpg', img_cropped)
 
@@ -134,6 +134,137 @@ class exam(QtWidgets.QMainWindow):
 
         self.lbl_img_snap.setPixmap(QtGui.QPixmap(path))
         self.lbl_img_snap.show()
+
+        # os.system('predictor.py')        
+
+        from keras.models import Sequential
+        from keras.layers import Conv2D, MaxPooling2D
+        from keras.layers import Activation, Dropout, Flatten, Dense
+        from keras import backend as K
+        from keras.preprocessing import image
+        
+
+        os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+
+        # dimensions of our images
+        img_width, img_height = 150, 150
+
+        if K.image_data_format() == 'channels_first':
+            input_shape = (3, img_width, img_height)
+        else:
+            input_shape = (img_width, img_height, 3)
+
+        names = {
+            0 : 'A',
+            1 : 'B',
+            2 : 'C',
+            3 : 'D',
+            4 : 'E',
+            5 : 'F',
+            6 : 'G',
+            7 : 'H',
+            8 : 'I',
+            9 : 'J',
+            10: 'K',
+            11: 'L',
+            12: 'M',
+            13: 'N',
+            14: 'O',
+            15: 'P',
+            16: 'Q',
+            17: 'R',
+            18: 'S',
+            19: 'T',
+            20: 'U',
+            21: 'V',
+            22: 'W',
+            23: 'X',
+            24: 'Y',
+            25: 'Z',
+            # 26: '1',
+            # 27: '2',
+            # 28: '3',
+            # 29: '4',
+            # 30: '5',
+            # 31: '6',
+            # 32: '7',
+            # 33: '8',
+            # 34: '9',
+            
+        }
+
+        bpath = os.getcwd()
+        fpath = 'predict'
+        path = os.path.join(bpath,fpath,'capture.jpg')
+
+        # if path == '':
+        #     print (path)
+        #     sys.exit()
+        # else:
+        _dir =  str(path)
+
+        #input
+        model = Sequential()
+        model.add(Conv2D(32, (3, 3), input_shape=input_shape,padding='same'))
+        model.add(Dropout(0.2))
+        #model.add(MaxPooling2D(pool_size=(2, 2)))
+
+        #first convo
+        model.add(Conv2D(32, (3, 3), padding='valid'))
+        model.add(Activation('relu'))
+        model.add(MaxPooling2D(pool_size=(2, 2)))
+        model.add(Dropout(0.2))
+
+        #second convo
+        model.add(Conv2D(64, (3, 3), padding='valid'))
+        model.add(Activation('relu'))
+        model.add(MaxPooling2D(pool_size=(2, 2)))
+        model.add(Dropout(0.2))
+
+        #third convo
+        model.add(Conv2D(64, (3, 3), padding='valid'))
+        model.add(Activation('relu'))
+        model.add(MaxPooling2D(pool_size=(2, 2)))
+        model.add(Dropout(0.2))
+
+        #fully connected
+        model.add(Flatten())
+        model.add(Dense(256))
+        model.add(Activation('relu'))
+        model.add(Dropout(0.5))
+        model.add(Dense(26))
+        model.add(Activation('softmax'))
+
+        #load model 
+        model.load_weights('./models/trained_model_3.h5')
+
+        model.compile(loss='categorical_crossentropy',
+                    optimizer='adam',
+                    metrics=['categorical_accuracy'])
+
+
+        # dir_files = glob.glob(_dir+'*.jpg')
+
+        # for _file in dir_files:
+        #     file_path = _file
+            
+
+        img = image.load_img(_dir, target_size=(img_width, img_height))
+
+        x = image.img_to_array(img)
+
+        x = np.expand_dims(x, axis=0)
+
+        images = np.vstack([x])
+
+        # classes = model.predict(images)
+
+        p_classes = model.predict_classes(images)
+        # print (p_classes)
+        letter = names[p_classes[0]]
+        print (letter)
+        self.lbl_ans.setText(letter)
+
 
     def displayImage(self, img, window=1):
         qformat = QtGui.QImage.Format_Indexed8

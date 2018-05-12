@@ -240,8 +240,18 @@
       <height>41</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>24</pointsize>
+      <weight>75</weight>
+      <italic>false</italic>
+      <bold>true</bold>
+      <underline>false</underline>
+      <strikeout>false</strikeout>
+     </font>
+    </property>
     <property name="text">
-     <string>&lt;ans&gt;</string>
+     <string/>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>

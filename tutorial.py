@@ -78,7 +78,7 @@ class VideoWindow(QtWidgets.QMainWindow):
     def setVid(self):
         bpath = os.getcwd()
         fpath = 'Video'
-        path = os.path.join(bpath,fpath,'1_9.mp4')
+        path = os.path.join(bpath,fpath,'1_9 and A_Z.mp4')
         # print (path)
         selFile = QtWidgets.QFileDialog.selectFile = path
         if selFile != '':
