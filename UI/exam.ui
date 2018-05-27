@@ -17,6 +17,12 @@
    <iconset>
     <normaloff>favasl.png</normaloff>favasl.png</iconset>
   </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <property name="documentMode">
+   <bool>false</bool>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLabel" name="label">
     <property name="geometry">
@@ -88,24 +94,6 @@
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="btn_start">
-    <property name="geometry">
-     <rect>
-      <x>290</x>
-      <y>610</y>
-      <width>81</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Start</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="btn_skip">
     <property name="geometry">
      <rect>
@@ -122,6 +110,10 @@
     </property>
     <property name="text">
      <string>Skip</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>skip.png</normaloff>skip.png</iconset>
     </property>
    </widget>
    <widget class="QPushButton" name="btn_next">
@@ -141,6 +133,10 @@
     <property name="text">
      <string>Next</string>
     </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>next.png</normaloff>next.png</iconset>
+    </property>
    </widget>
    <widget class="QPushButton" name="btn_submit">
     <property name="geometry">
@@ -158,6 +154,10 @@
     </property>
     <property name="text">
      <string>Submit</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>submit.png</normaloff>submit.png</iconset>
     </property>
    </widget>
    <widget class="QLabel" name="lbl_date">
@@ -187,6 +187,10 @@
     </property>
     <property name="text">
      <string>Snap</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>snap.png</normaloff>snap.png</iconset>
     </property>
    </widget>
    <widget class="QLabel" name="lbl_cam">

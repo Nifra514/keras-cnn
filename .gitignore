@@ -2,4 +2,5 @@ models/*
 preview/*
 Dataset/*
 test/*
+Video/*
 predict/*
