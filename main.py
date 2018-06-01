@@ -17,6 +17,7 @@ class login(QtWidgets.QMainWindow):
         super(login,self).__init__()
         loadUi('UI/login.ui',self)
         self.btn_login.clicked.connect(self.on_login)
+        self.btn_exit.clicked.connect(self.on_exit)
 
     def messagebox(self,title,message):
         msgbox = QtWidgets.QMessageBox()
@@ -59,6 +60,9 @@ class login(QtWidgets.QMainWindow):
         else:            
             self.messagebox('Invalid Login','Invalid Username or Password!!!')
             self.clear()
+
+    def on_exit(self):
+        sys.exit()
 
 class main(QtWidgets.QMainWindow):
     def __init__(self):
