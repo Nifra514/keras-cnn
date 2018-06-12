@@ -20,6 +20,9 @@
   <property name="autoFillBackground">
    <bool>false</bool>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(255, 255, 255);</string>
+  </property>
   <property name="documentMode">
    <bool>false</bool>
   </property>
@@ -36,6 +39,8 @@
     <property name="font">
      <font>
       <pointsize>10</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
      </font>
     </property>
     <property name="text">
@@ -54,6 +59,8 @@
     <property name="font">
      <font>
       <pointsize>10</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
      </font>
     </property>
     <property name="text">
@@ -75,6 +82,8 @@
     <property name="font">
      <font>
       <pointsize>10</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
      </font>
     </property>
     <property name="text">
@@ -106,7 +115,12 @@
     <property name="font">
      <font>
       <pointsize>10</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(218, 218, 218);</string>
     </property>
     <property name="text">
      <string>Skip</string>
@@ -114,6 +128,9 @@
     <property name="icon">
      <iconset>
       <normaloff>skip.png</normaloff>skip.png</iconset>
+    </property>
+    <property name="shortcut">
+     <string>Esc</string>
     </property>
    </widget>
    <widget class="QPushButton" name="btn_next">
@@ -128,7 +145,12 @@
     <property name="font">
      <font>
       <pointsize>10</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(218, 218, 218);</string>
     </property>
     <property name="text">
      <string>Next</string>
@@ -136,6 +158,9 @@
     <property name="icon">
      <iconset>
       <normaloff>next.png</normaloff>next.png</iconset>
+    </property>
+    <property name="shortcut">
+     <string>N</string>
     </property>
    </widget>
    <widget class="QPushButton" name="btn_submit">
@@ -150,7 +175,12 @@
     <property name="font">
      <font>
       <pointsize>10</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(218, 218, 218);</string>
     </property>
     <property name="text">
      <string>Submit</string>
@@ -158,6 +188,9 @@
     <property name="icon">
      <iconset>
       <normaloff>submit.png</normaloff>submit.png</iconset>
+    </property>
+    <property name="shortcut">
+     <string>Return</string>
     </property>
    </widget>
    <widget class="QLabel" name="lbl_date">
@@ -168,6 +201,12 @@
       <width>121</width>
       <height>21</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
     </property>
     <property name="text">
      <string>&lt;date&gt;</string>
@@ -185,12 +224,24 @@
       <height>23</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(218, 218, 218);</string>
+    </property>
     <property name="text">
      <string>Snap</string>
     </property>
     <property name="icon">
      <iconset>
       <normaloff>snap.png</normaloff>snap.png</iconset>
+    </property>
+    <property name="shortcut">
+     <string>S</string>
     </property>
    </widget>
    <widget class="QLabel" name="lbl_cam">
@@ -207,16 +258,6 @@
     </property>
     <property name="text">
      <string/>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="txt_ans_stat">
-    <property name="geometry">
-     <rect>
-      <x>780</x>
-      <y>50</y>
-      <width>201</width>
-      <height>41</height>
-     </rect>
     </property>
    </widget>
    <widget class="QLabel" name="lbl_img_snap">
@@ -259,6 +300,25 @@
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_ans_stat">
+    <property name="geometry">
+     <rect>
+      <x>780</x>
+      <y>50</y>
+      <width>201</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
   </widget>
