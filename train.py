@@ -4,7 +4,7 @@ from keras.layers import Conv2D, MaxPooling2D
 from keras.layers import Activation, Dropout, Flatten, Dense
 from keras import backend as K
 
-img_width, img_height = 150, 150
+img_width, img_height = 200, 250
 
 if K.image_data_format() == 'channels_first':
     input_shape = (3, img_width, img_height)

@@ -21,7 +21,7 @@ import cv2
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 # dimensions of our images
-img_width, img_height = 150, 150
+img_width, img_height = 200, 250
 
 if K.image_data_format() == 'channels_first':
     input_shape = (3, img_width, img_height)
