@@ -1,6 +1,7 @@
 models/*
 preview/*
 Dataset/*
+data/*
 test/*
 Video/*
 predict/*

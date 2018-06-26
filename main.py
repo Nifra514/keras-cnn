@@ -10,6 +10,9 @@ import pymysql
 import hashlib
 import numpy as np
 import cv2
+import webbrowser
+
+
 # import tutorial
 
 class login(QtWidgets.QMainWindow):
@@ -17,6 +20,7 @@ class login(QtWidgets.QMainWindow):
         super(login,self).__init__()
         loadUi('UI/login.ui',self)
         self.btn_login.clicked.connect(self.on_login)
+        self.btn_reg.clicked.connect(self.on_reg)
         self.btn_exit.clicked.connect(self.on_exit)
 
     def messagebox(self,title,message):
@@ -60,6 +64,9 @@ class login(QtWidgets.QMainWindow):
         else:            
             self.messagebox('Invalid Login','Invalid Username or Password!!!')
             self.clear()
+
+    def on_reg(self):
+        webbrowser.open('http://localhost:8888/asllearning/Views/registration.php')
 
     def on_exit(self):
         sys.exit()

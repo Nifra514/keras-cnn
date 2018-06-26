@@ -2,6 +2,8 @@ from keras.preprocessing.image import ImageDataGenerator
 from keras.models import Sequential 
 from keras.layers import Conv2D, MaxPooling2D
 from keras.layers import Activation, Dropout, Flatten, Dense
+from keras.optimizers import Adam
+
 from keras import backend as K
 
 img_width, img_height = 200, 250
@@ -41,11 +43,11 @@ model.add(Flatten())
 model.add(Dense(256))
 model.add(Activation('relu'))
 model.add(Dropout(0.5))
-model.add(Dense(26))
+model.add(Dense(5))
 model.add(Activation('softmax'))
 
 model.compile(loss='categorical_crossentropy',
-              optimizer='adam',
+              optimizer=Adam(lr=1e-3),
               metrics=['categorical_accuracy'])
 
 train_datagen = ImageDataGenerator(
@@ -60,7 +62,7 @@ train_datagen = ImageDataGenerator(
 test_datagen = ImageDataGenerator(rescale=1. / 255)
 
 training = train_datagen.flow_from_directory(
-        'Dataset',
+        'Dataset/train',
         target_size=(img_width, img_height),
         batch_size=64,
         class_mode='categorical',
@@ -70,7 +72,7 @@ training = train_datagen.flow_from_directory(
         )
 
 testing = test_datagen.flow_from_directory(
-        'Dataset',
+        'Dataset/test',
         target_size=(img_width, img_height),
         batch_size=64,
         class_mode='categorical',
@@ -79,13 +81,13 @@ testing = test_datagen.flow_from_directory(
         
 model.fit_generator(
         training,
-        steps_per_epoch=500,
-        epochs=15,
+        steps_per_epoch=100,
+        epochs=20,
         validation_data=testing,
-        validation_steps=200,
+        validation_steps=40,
         # callbacks=[checkpointer]
         )
 
 # to save model weights
-model.save_weights('./models/trained_model_3.h5')
+model.save_weights('./models/trained_model2.h5')
 
