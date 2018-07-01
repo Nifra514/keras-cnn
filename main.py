@@ -177,17 +177,12 @@ class exam(QtWidgets.QMainWindow):
             
         # }
 
-        # img = cv2.imread(path)
-        # grayscaled = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) 
-        # gaus = cv2.adaptiveThreshold(grayscaled, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,cv2.THRESH_BINARY,115,1) 
-        # # cv2.imshow('gaus', gaus)
-
         # # if path == '':
         # #     print (path)
         # #     sys.exit()
         # # else:
-        
-        # _dir =  str(gaus)
+
+        # _dir =  str(path)
         
         # #input
         # model = Sequential()
@@ -234,8 +229,12 @@ class exam(QtWidgets.QMainWindow):
         # # for _file in dir_files:
         # #     file_path = _file
             
+        # imgs = cv2.imread(_dir)
+        # grayscaled = cv2.cvtColor(imgs, cv2.COLOR_BGR2GRAY) 
+        # gaus = cv2.adaptiveThreshold(grayscaled, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,cv2.THRESH_BINARY,115,1) 
+        # # cv2.imshow('gaus', gaus)
 
-        # img = image.load_img(_dir, target_size=(img_width, img_height))
+        # img = image.load_img(gaus, target_size=(img_width, img_height))
 
         # x = image.img_to_array(img)
 
