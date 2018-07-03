@@ -29,41 +29,42 @@ else:
     input_shape = (img_width, img_height, 3)
 
 names = {
-    # 0 : 'A',
-    # 1 : 'B',
-    # 2 : 'C',
-    # 3 : 'D',
-    # 4 : 'E',
-    # 5 : 'F',
-    # 6 : 'G',
-    # 7 : 'H',
-    # 8 : 'I',
-    # 9 : 'J',
-    # 10: 'K',
-    # 11: 'L',
-    # 12: 'M',
-    # 13: 'N',
-    # 14: 'O',
-    # 15: 'P',
-    # 16: 'Q',
-    # 17: 'R',
-    # 18: 'S',
-    # 19: 'T',
-    # 20: 'U',
-    # 21: 'V',
-    # 22: 'W',
-    # 23: 'X',
-    # 24: 'Y',
-    # 25: 'Z',
     0: '1',
     1: '2',
     2: '3',
-    3: '4',
-    4: '5',
+    # 3: '4',
+    # 4: '5',
     # 5: '6',
     # 6: '7',
     # 7: '8',
     # 8: '9',
+    # 9: 'A',
+    # 10: 'B',
+    # 11: 'C',
+    # 12: 'D',
+    # 13: 'E',
+    # 14: 'F',
+    # 15: 'G',
+    # 16: 'H',
+    # 17: 'I',
+    # 18: 'J',
+    # 19: 'K',
+    # 20: 'L',
+    # 21: 'M',
+    # 22: 'N',
+    # 23: 'O',
+    # 24: 'P',
+    # 25: 'Q',
+    # 26: 'R',
+    # 27: 'S',
+    # 28: 'T',
+    # 29: 'U',
+    # 30: 'V',
+    # 31: 'W',
+    # 32: 'X',
+    # 33: 'Y',
+    # 34: 'Z',
+    
     
 }
 
@@ -98,14 +99,14 @@ model.add(Flatten())
 model.add(Dense(256))
 model.add(Activation('relu'))
 model.add(Dropout(0.5))
-model.add(Dense(5))
+model.add(Dense(3))
 model.add(Activation('softmax'))
 
 #load model 
 model.load_weights('./models/trained_model1.h5')
 
 model.compile(loss='categorical_crossentropy',
-              optimizer='adam',
+              optimizer=Adam(lr=1e-3),
               metrics=['categorical_accuracy'])
 
 

@@ -75,28 +75,26 @@ class main(QtWidgets.QMainWindow):
     def __init__(self):
         super(main,self).__init__()
         loadUi('UI/main.ui',self)    
-        self.btn_exam.clicked.connect(self.on_exam)
+        self.btn_pred.clicked.connect(self.on_pred)
         self.btn_exit.clicked.connect(self.on_exit)
         self.btn_tut.clicked.connect(self.on_tut)
 
-    def on_exam(self):
-        self.ex = exam()
-        self.ex.show()
+    def on_pred(self):
+        self.prediction = prediction()
+        self.prediction.show()
         self.hide()
 
     def on_exit(self):
-        self.lg = login()
-        self.lg.show()
-        self.hide()
+        sys.exit()
 
     def on_tut(self):
         os.system('tutorial.py')
         
 
-class exam(QtWidgets.QMainWindow):
+class prediction(QtWidgets.QMainWindow):
     def __init__(self):
-        super(exam,self).__init__()
-        loadUi('UI/exam.ui',self)     
+        super(prediction,self).__init__()
+        loadUi('UI/prediction.ui',self)     
         self.timer = QtCore.QTimer()
         self.timer.timeout.connect(self.update_time)
         self.timer.start(10)
@@ -109,20 +107,14 @@ class exam(QtWidgets.QMainWindow):
         self.timer1.timeout.connect(self.update_frame)
         self.timer1.start(5)
         self.btn_snap.clicked.connect(self.snap)
+        self.btn_exit.clicked.connect(self.exit)
 
     def update_time(self):
         # self.q_lcdn.display(QtCore.QTime.currentTime().toString())
         self.lbl_time.setText(QtCore.QTime.currentTime().toString())
         self.lbl_date.setText(QtCore.QDate.currentDate().toString())
 
-    # def start_cam(self):
-    #     self.cap = cv2.VideoCapture(0)
-    #     self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT,480)
-    #     self.cap.set(cv2.CAP_PROP_FRAME_WIDTH,720)
 
-    #     self.timer1 = QtCore.QTimer(self)
-    #     self.timer1.timeout.connect(self.update_frame)
-    #     self.timer1.start(5)
 
     def update_frame(self):
         ret, self.image = self.cap.read()
@@ -267,6 +259,10 @@ class exam(QtWidgets.QMainWindow):
             self.lbl_cam.setPixmap(QtGui.QPixmap.fromImage(outImage))
             self.lbl_cam.setScaledContents(True)
 
+    def exit(self):
+        self.mn = main()
+        self.mn.show()
+        self.hide()
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)

@@ -42,7 +42,7 @@ model.add(Flatten())
 model.add(Dense(256))
 model.add(Activation('relu'))
 model.add(Dropout(0.5))
-model.add(Dense(5))
+model.add(Dense(3))
 model.add(Activation('softmax'))
 
 model.compile(loss='categorical_crossentropy',
@@ -63,7 +63,7 @@ test_datagen = ImageDataGenerator(rescale=1. / 255)
 training = train_datagen.flow_from_directory(
         'Dataset/train',
         target_size=(img_width, img_height),
-        batch_size=64,
+        batch_size=16,
         class_mode='categorical',
         # color_mode='grayscale',
         # save_to_dir='preview',
@@ -73,7 +73,7 @@ training = train_datagen.flow_from_directory(
 testing = test_datagen.flow_from_directory(
         'Dataset/test',
         target_size=(img_width, img_height),
-        batch_size=64,
+        batch_size=16,
         class_mode='categorical',
         # color_mode='grayscale'
         )
