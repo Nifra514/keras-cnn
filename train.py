@@ -30,9 +30,20 @@ model.add(Activation('relu'))
 model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Dropout(0.2))
 
-
 #third convo
 model.add(Conv2D(64, (3, 3), padding='valid'))
+model.add(Activation('relu'))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Dropout(0.2))
+
+#fourth convo
+model.add(Conv2D(128, (3, 3), padding='valid'))
+model.add(Activation('relu'))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Dropout(0.2))
+
+#fifth convo
+model.add(Conv2D(128, (3, 3), padding='valid'))
 model.add(Activation('relu'))
 model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Dropout(0.2))
@@ -88,5 +99,5 @@ model.fit_generator(
         )
 
 # to save model weights
-model.save_weights('./models/trained_model2.h5')
+model.save_weights('./models/trained_model3.h5')
 

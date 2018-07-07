@@ -1,14 +1,10 @@
-from keras.preprocessing.image import ImageDataGenerator
 from keras.models import Sequential
 from keras.layers import Conv2D, MaxPooling2D
 from keras.layers import Activation, Dropout, Flatten, Dense
 from keras import backend as K
-from keras.callbacks import TensorBoard
-from keras.utils import plot_model
+from keras.optimizers import Adam
 import tensorflow as tf
 import keras
-import json
-import time
 import sys
 import os
 
@@ -27,6 +23,7 @@ if K.image_data_format() == 'channels_first':
     input_shape = (3, img_width, img_height)
 else:
     input_shape = (img_width, img_height, 3)
+
 
 names = {
     0: '1',
@@ -68,7 +65,9 @@ names = {
     
 }
 
+
 _dir =  sys.argv[1]
+
 
 #input
 model = Sequential()
@@ -94,6 +93,18 @@ model.add(Activation('relu'))
 model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Dropout(0.2))
 
+#fourth convo
+model.add(Conv2D(128, (3, 3), padding='valid'))
+model.add(Activation('relu'))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Dropout(0.2))
+
+#fifth convo
+model.add(Conv2D(128, (3, 3), padding='valid'))
+model.add(Activation('relu'))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Dropout(0.2))
+
 #fully connected
 model.add(Flatten())
 model.add(Dense(256))
@@ -103,7 +114,7 @@ model.add(Dense(3))
 model.add(Activation('softmax'))
 
 #load model 
-model.load_weights('./models/trained_model1.h5')
+model.load_weights('./models/trained_model2.h5')
 
 model.compile(loss='categorical_crossentropy',
               optimizer=Adam(lr=1e-3),
@@ -112,21 +123,23 @@ model.compile(loss='categorical_crossentropy',
 
 dir_files = glob.glob(_dir+'*.jpg')
 
+
 for _file in dir_files:
     file_path = _file
     
 
     # img = image.load_img(file_path, target_size=(img_width, img_height), grayscale=True)
     img = image.load_img(file_path, target_size=(img_width, img_height))
-    
+
     x = image.img_to_array(img)
-    
+
     x = np.expand_dims(x, axis=0)
 
     images = np.vstack([x])
 
     classes = model.predict(images)
-    
+
     p_classes = model.predict_classes(images)
     # print (p_classes)
-    print (_file+" : "+names[p_classes[0]])
+    letter = names[p_classes[0]]
+    print (_file+" : "+letter)
