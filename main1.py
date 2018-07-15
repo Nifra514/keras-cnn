@@ -79,7 +79,7 @@ class prediction(QtWidgets.QMainWindow):
 
             cv2.imwrite('Dataset/train/' +  name + '.jpg', edges)
 
-            os.remove(path)
+            # os.remove(path)
         
         
 

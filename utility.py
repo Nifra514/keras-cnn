@@ -18,11 +18,7 @@ def check_internet():
 
 
 token = ""
-# Login
-# data = {"uname": "qweqwe","password":"asd456"}
-# resp = requests.post('http://localhost:8888/asllearning/api/login.php', data=data)
-# print (resp.text)
-# token = resp.text
+
 
 def make_login(uname, password):
     data = {"uname": uname,"password":password}
