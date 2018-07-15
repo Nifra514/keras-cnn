@@ -13,133 +13,148 @@ from keras.preprocessing import image
 import numpy as np
 import glob
 import cv2
+import logging
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
-# dimensions of our images
-img_width, img_height = 200, 250
+logging.basicConfig(filename='Log/predict_log.log', level=logging.DEBUG,
+                    format='%(asctime)s:%(levelname)s:%(message)s')
+try:
 
-if K.image_data_format() == 'channels_first':
-    input_shape = (3, img_width, img_height)
-else:
-    input_shape = (img_width, img_height, 3)
+    # dimensions of our images
+    img_width, img_height = 200, 250
 
+    if K.image_data_format() == 'channels_first':
+        input_shape = (3, img_width, img_height)
+    else:
+        input_shape = (img_width, img_height, 3)
 
-names = {
-    0: '1',
-    1: '2',
-    2: '3',
-    # 3: '4',
-    # 4: '5',
-    # 5: '6',
-    # 6: '7',
-    # 7: '8',
-    # 8: '9',
-    # 9: 'A',
-    # 10: 'B',
-    # 11: 'C',
-    # 12: 'D',
-    # 13: 'E',
-    # 14: 'F',
-    # 15: 'G',
-    # 16: 'H',
-    # 17: 'I',
-    # 18: 'J',
-    # 19: 'K',
-    # 20: 'L',
-    # 21: 'M',
-    # 22: 'N',
-    # 23: 'O',
-    # 24: 'P',
-    # 25: 'Q',
-    # 26: 'R',
-    # 27: 'S',
-    # 28: 'T',
-    # 29: 'U',
-    # 30: 'V',
-    # 31: 'W',
-    # 32: 'X',
-    # 33: 'Y',
-    # 34: 'Z',
-    
-    
-}
+    try:
+        names = {
+            0: '1',
+            1: '2',
+            2: '3',
+            # 3: '4',
+            # 4: '5',
+            # 5: '6',
+            # 6: '7',
+            # 7: '8',
+            # 8: '9',
+            # 9: 'A',
+            # 10: 'B',
+            # 11: 'C',
+            # 12: 'D',
+            # 13: 'E',
+            # 14: 'F',
+            # 15: 'G',
+            # 16: 'H',
+            # 17: 'I',
+            # 18: 'J',
+            # 19: 'K',
+            # 20: 'L',
+            # 21: 'M',
+            # 22: 'N',
+            # 23: 'O',
+            # 24: 'P',
+            # 25: 'Q',
+            # 26: 'R',
+            # 27: 'S',
+            # 28: 'T',
+            # 29: 'U',
+            # 30: 'V',
+            # 31: 'W',
+            # 32: 'X',
+            # 33: 'Y',
+            # 34: 'Z',
+            
+            
+        }
 
-
-_dir =  sys.argv[1]
-
-
-#input
-model = Sequential()
-model.add(Conv2D(32, (3, 3), input_shape=input_shape,padding='same'))
-model.add(Dropout(0.2))
-#model.add(MaxPooling2D(pool_size=(2, 2)))
-
-#first convo
-model.add(Conv2D(32, (3, 3), padding='valid'))
-model.add(Activation('relu'))
-model.add(MaxPooling2D(pool_size=(2, 2)))
-model.add(Dropout(0.2))
-
-#second convo
-model.add(Conv2D(64, (3, 3), padding='valid'))
-model.add(Activation('relu'))
-model.add(MaxPooling2D(pool_size=(2, 2)))
-model.add(Dropout(0.2))
-
-#third convo
-model.add(Conv2D(64, (3, 3), padding='valid'))
-model.add(Activation('relu'))
-model.add(MaxPooling2D(pool_size=(2, 2)))
-model.add(Dropout(0.2))
-
-#fourth convo
-model.add(Conv2D(128, (3, 3), padding='valid'))
-model.add(Activation('relu'))
-model.add(MaxPooling2D(pool_size=(2, 2)))
-model.add(Dropout(0.2))
-
-#fifth convo
-model.add(Conv2D(128, (3, 3), padding='valid'))
-model.add(Activation('relu'))
-model.add(MaxPooling2D(pool_size=(2, 2)))
-model.add(Dropout(0.2))
-
-#fully connected
-model.add(Flatten())
-model.add(Dense(256))
-model.add(Activation('relu'))
-model.add(Dropout(0.5))
-model.add(Dense(3))
-model.add(Activation('softmax'))
-
-#load model 
-model.load_weights('./models/trained_model2.h5')
-
-model.compile(loss='categorical_crossentropy',
-              optimizer=Adam(lr=1e-3),
-              metrics=['categorical_accuracy'])
-
-
-dir_files = glob.glob(_dir+'*.jpg')
-
-
-for _file in dir_files:
-    file_path = _file
     
 
-    # img = image.load_img(file_path, target_size=(img_width, img_height), grayscale=True)
-    img = image.load_img(file_path, target_size=(img_width, img_height))
+        _dir =  sys.argv[1]
 
-    x = image.img_to_array(img)
 
-    x = np.expand_dims(x, axis=0)
+        #input
+        model = Sequential()
+        model.add(Conv2D(32, (3, 3), input_shape=input_shape,padding='same'))
+        model.add(Dropout(0.2))
+        #model.add(MaxPooling2D(pool_size=(2, 2)))
 
-    images = np.vstack([x])
+        #first convo
+        model.add(Conv2D(32, (3, 3), padding='valid'))
+        model.add(Activation('relu'))
+        model.add(MaxPooling2D(pool_size=(2, 2)))
+        model.add(Dropout(0.2))
 
-    classes = model.predict(images)
+        #second convo
+        model.add(Conv2D(64, (3, 3), padding='valid'))
+        model.add(Activation('relu'))
+        model.add(MaxPooling2D(pool_size=(2, 2)))
+        model.add(Dropout(0.2))
 
-    p_classes = model.predict_classes(images)
-    # print (p_classes)
-    letter = names[p_classes[0]]
-    print (_file+" : "+letter)
+        #third convo
+        model.add(Conv2D(64, (3, 3), padding='valid'))
+        model.add(Activation('relu'))
+        model.add(MaxPooling2D(pool_size=(2, 2)))
+        model.add(Dropout(0.2))
+
+        #fourth convo
+        model.add(Conv2D(128, (3, 3), padding='valid'))
+        model.add(Activation('relu'))
+        model.add(MaxPooling2D(pool_size=(2, 2)))
+        model.add(Dropout(0.2))
+
+        #fifth convo
+        model.add(Conv2D(128, (3, 3), padding='valid'))
+        model.add(Activation('relu'))
+        model.add(MaxPooling2D(pool_size=(2, 2)))
+        model.add(Dropout(0.2))
+
+        #fully connected
+        model.add(Flatten())
+        model.add(Dense(256))
+        model.add(Activation('relu'))
+        model.add(Dropout(0.5))
+        model.add(Dense(3))
+        model.add(Activation('softmax'))
+
+    
+
+        #load model 
+        model.load_weights('./models/trained_model3.h5')
+
+    except ValueError:
+        logging.error('Class_Error: {}'.format('Invalid number of classes'))
+
+    model.compile(loss='categorical_crossentropy',
+                optimizer=Adam(lr=1e-3),
+                metrics=['categorical_accuracy'])
+    
+
+
+    dir_files = glob.glob(_dir+'*.jpg')
+
+
+    for _file in dir_files:
+        file_path = _file
+        
+
+        # img = image.load_img(file_path, target_size=(img_width, img_height), grayscale=True)
+        img = image.load_img(file_path, target_size=(img_width, img_height))
+    
+        x = image.img_to_array(img)
+
+        x = np.expand_dims(x, axis=0)
+
+        images = np.vstack([x])
+
+        classes = model.predict(images)
+
+        p_classes = model.predict_classes(images)
+        # print (p_classes)
+        letter = names[p_classes[0]]
+        print (_file+" : "+letter)
+
+except ValueError:
+    logging.error('Input_Error: {}'.format('Invalid input found in the file'))

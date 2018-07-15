@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>371</width>
-    <height>242</height>
+    <width>392</width>
+    <height>276</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -48,8 +48,8 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>52</y>
+      <x>44</x>
+      <y>54</y>
       <width>64</width>
       <height>16</height>
      </rect>
@@ -68,9 +68,9 @@
    <widget class="QLineEdit" name="txt_uname">
     <property name="geometry">
      <rect>
-      <x>140</x>
+      <x>120</x>
       <y>52</y>
-      <width>190</width>
+      <width>230</width>
       <height>20</height>
      </rect>
     </property>
@@ -78,8 +78,8 @@
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>100</y>
+      <x>44</x>
+      <y>102</y>
       <width>63</width>
       <height>16</height>
      </rect>
@@ -98,9 +98,9 @@
    <widget class="QLineEdit" name="txt_password">
     <property name="geometry">
      <rect>
-      <x>140</x>
+      <x>120</x>
       <y>100</y>
-      <width>190</width>
+      <width>230</width>
       <height>20</height>
      </rect>
     </property>
@@ -111,9 +111,9 @@
    <widget class="QPushButton" name="btn_login">
     <property name="geometry">
      <rect>
-      <x>140</x>
+      <x>120</x>
       <y>140</y>
-      <width>90</width>
+      <width>110</width>
       <height>31</height>
      </rect>
     </property>
@@ -141,9 +141,9 @@
    <widget class="QPushButton" name="btn_exit">
     <property name="geometry">
      <rect>
-      <x>140</x>
+      <x>120</x>
       <y>180</y>
-      <width>190</width>
+      <width>230</width>
       <height>24</height>
      </rect>
     </property>
@@ -173,7 +173,7 @@
      <rect>
       <x>240</x>
       <y>140</y>
-      <width>90</width>
+      <width>110</width>
       <height>31</height>
      </rect>
     </property>
@@ -204,6 +204,27 @@
      <string>R</string>
     </property>
    </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>230</y>
+      <width>251</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <italic>true</italic>
+     </font>
+    </property>
+    <property name="text">
+     <string>Copyright © 2018 asllearning. All Rights Reserved </string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
+   </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionExit">
@@ -212,8 +233,6 @@
    </property>
   </action>
  </widget>
- <resources>
-  <include location="user_image.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

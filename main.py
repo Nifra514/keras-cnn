@@ -12,9 +12,47 @@ import numpy as np
 import cv2
 import webbrowser
 import datetime
+import requests
+import json
+import utility
+import pickledb
 
-# import tutorial
 
+class loading(QtWidgets.QMainWindow):
+    def __init__(self):
+        super(loading,self).__init__()
+        loadUi('UI/load.ui',self)
+        self.timer = QtCore.QTimer(self)
+        self.timer.timeout.connect(self.test_connection)
+        self.timer.start(10)
+
+    def messagebox(self,title,message):
+        msgbox = QtWidgets.QMessageBox()
+        msgbox.setWindowTitle(title)
+        msgbox.setText(message)
+        msgbox.setStandardButtons(QtWidgets.QMessageBox.Ok)
+        msgbox.exec_()
+
+        
+    def test_connection(self):
+        connection = utility.check_internet()
+        if connection == 200:            
+            self.step = 0
+            while self.step < 100:
+                self.step += 0.0001
+                self.q_pb.setValue(self.step)
+
+            self.lg = login()
+            self.lg.show()
+            self.hide()
+            self.timer.disconnect()
+            
+        else:  
+            conection_error= str(connection)
+            self.messagebox('Connection Error',conection_error)
+            sys.exit()
+            
+        
 class login(QtWidgets.QMainWindow):
     def __init__(self):
         super(login,self).__init__()
@@ -37,33 +75,38 @@ class login(QtWidgets.QMainWindow):
 
     def on_login(self):
         
-        connect = pymysql.connect(host='localhost', user='root', password='',db='asl')
+        # connect = pymysql.connect(host='localhost', user='root', password='',db='asl')
 
         uname = self.txt_uname.text()
         password = self.txt_password.text()
 
-        pw = password.encode("utf-8")
-        hash = hashlib.md5(pw)
-        pword = hash.hexdigest()   
+        # pw = password.encode("utf-8")
+        # hash = hashlib.md5(pw)
+        # pword = hash.hexdigest()   
 
-        con = connect.cursor()
-        sql = "SELECT * FROM user_details WHERE username = '%s' AND password = '%s'"%(uname,pword)
+        # con = connect.cursor()
+        # sql = "SELECT * FROM user_details WHERE username = '%s' AND password = '%s'"%(uname,pword)
         
-        con.execute(sql)
-        result = con.fetchall()
+        # con.execute(sql)
+        # result = con.fetchall()
+        
+        #api login
+        token = utility.make_login(uname, password)
+        print("RECIVED TOKEN %s", (token))
+        
 
-        if (len(result) > 0):
-            # self.Messagebox('invalid','invalid')
-            # for r in result:           
-                # if (r[4] == uname and r[5] == pword):
+        if (token["status"] == True):
+            #save token
+            utility.set_token(token["data"])
             self.main = main()
             self.main.show()
             self.hide()
-                # else:
-                #     print("Login Error") 
-        else:            
-            self.messagebox('Invalid Login','Invalid Username or Password!!!')
+            
+        else:   
+            self.messagebox('Invalid Login',token['data'])
             self.clear()
+
+        
 
     def on_reg(self):
         webbrowser.open('http://localhost:8888/asllearning/Views/registration.php')
@@ -75,9 +118,13 @@ class main(QtWidgets.QMainWindow):
     def __init__(self):
         super(main,self).__init__()
         loadUi('UI/main.ui',self)    
+        
         self.btn_pred.clicked.connect(self.on_pred)
         self.btn_exit.clicked.connect(self.on_exit)
         self.btn_tut.clicked.connect(self.on_tut)
+        info = utility.user_info()
+        self.lbl_name.setText(info['u_name'])
+        
 
     def on_pred(self):
         self.prediction = prediction()
@@ -94,18 +141,22 @@ class main(QtWidgets.QMainWindow):
 class prediction(QtWidgets.QMainWindow):
     def __init__(self):
         super(prediction,self).__init__()
-        loadUi('UI/prediction.ui',self)     
-        self.timer = QtCore.QTimer()
-        self.timer.timeout.connect(self.update_time)
-        self.timer.start(10)
+        loadUi('UI/prediction.ui',self)    
+
+        info = utility.user_info()
+        self.lbl_name.setText(info['u_name'])
+
+        self.timer1 = QtCore.QTimer()
+        self.timer1.timeout.connect(self.update_time)
+        self.timer1.start(10)
         
         self.cap = cv2.VideoCapture(0)
         self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT,480)
         self.cap.set(cv2.CAP_PROP_FRAME_WIDTH,720)
 
-        self.timer1 = QtCore.QTimer(self)
-        self.timer1.timeout.connect(self.update_frame)
-        self.timer1.start(5)
+        self.timer2 = QtCore.QTimer(self)
+        self.timer2.timeout.connect(self.update_frame)
+        self.timer2.start(5)
         self.btn_snap.clicked.connect(self.snap)
         self.btn_exit.clicked.connect(self.exit)
 
@@ -230,7 +281,7 @@ class prediction(QtWidgets.QMainWindow):
         model.add(Activation('softmax'))
 
         #load model 
-        model.load_weights('./models/trained_model2.h5')
+        model.load_weights('./models/trained_model3.h5')
 
         model.compile(loss='categorical_crossentropy',
                     optimizer=Adam(lr=1e-3),
@@ -283,8 +334,10 @@ class prediction(QtWidgets.QMainWindow):
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
-    lg = login()
-    lg.show()
+    # lg = login()
+    # lg.show()
+    ld = loading()
+    ld.show()
     sys.exit(app.exec_())
 
 

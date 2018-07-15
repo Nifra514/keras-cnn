@@ -1,3 +1,6 @@
 Dataset/*
-data/*
+data_set/*
 Video/*
+preview/*
+
+models/*
