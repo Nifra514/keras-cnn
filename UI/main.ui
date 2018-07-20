@@ -93,7 +93,7 @@
      <string>A</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="btn_exit">
+   <widget class="QPushButton" name="btn_logout">
     <property name="geometry">
      <rect>
       <x>9</x>
@@ -113,11 +113,11 @@
      <string notr="true">background-color: rgb(218, 218, 218);</string>
     </property>
     <property name="text">
-     <string>Exit</string>
+     <string>Logout</string>
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>exit.png</normaloff>exit.png</iconset>
+      <normaloff>logout.png</normaloff>logout.png</iconset>
     </property>
     <property name="shortcut">
      <string>Esc</string>

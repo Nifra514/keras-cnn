@@ -33,7 +33,7 @@ class prediction(QtWidgets.QMainWindow):
         self.timer1.timeout.connect(self.update_frame)
         self.timer1.start(5)
         self.btn_snap.clicked.connect(self.snap)
-        self.btn_exit.clicked.connect(self.exit)
+        self.btn_back.clicked.connect(self.back)
 
     def update_time(self):
         # self.q_lcdn.display(QtCore.QTime.currentTime().toString())
@@ -51,8 +51,9 @@ class prediction(QtWidgets.QMainWindow):
             cv2.rectangle(self.image, (x1, y1), (x2, y2), (0,0,250), 1)
         
         self.displayImage(self.image, 1)
-        
-        
+
+        # edges1 = cv2.Canny(self.image, 75,150)
+        # cv2.imshow("edge",edges1)
                
     def snap(self):
         
@@ -64,20 +65,20 @@ class prediction(QtWidgets.QMainWindow):
             img_cropped = self.image[self.y1:self.y2, self.x1:self.x2] 
             i+=1
             name = str(i) 
-            cv2.imwrite('data_set/'+ name + '.jpg', img_cropped)
+            cv2.imwrite('data_set/Y/'+ name + '.jpg', img_cropped)
 
-            bpath = os.getcwd()
-            fpath = 'data_set/'
-            path = os.path.join(bpath,fpath,name + '.jpg')
+            # bpath = os.getcwd()
+            # fpath = 'data_set/B/'
+            # path = os.path.join(bpath,fpath,name + '.jpg')
 
-            img = cv2.imread(path)
+            # img = cv2.imread(path)
             
             # grayscaled = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) 
             # gaus = cv2.adaptiveThreshold(grayscaled, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,cv2.THRESH_BINARY,115,1) 
-            edges = cv2.Canny(img, 100,200)
+            edges = cv2.Canny(img_cropped, 75,150)
 
 
-            cv2.imwrite('Dataset/train/' +  name + '.jpg', edges)
+            cv2.imwrite('Dataset/train/Y/' +  name + '.jpg', edges)
 
             # os.remove(path)
         
@@ -99,7 +100,7 @@ class prediction(QtWidgets.QMainWindow):
             self.lbl_cam.setPixmap(QtGui.QPixmap.fromImage(outImage))
             self.lbl_cam.setScaledContents(True)
 
-    def exit(self):
+    def back(self):
         sys.exit()
 
 

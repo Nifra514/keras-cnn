@@ -50,7 +50,7 @@
      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
     </property>
    </widget>
-   <widget class="QPushButton" name="btn_exit">
+   <widget class="QPushButton" name="btn_back">
     <property name="geometry">
      <rect>
       <x>660</x>
@@ -70,14 +70,14 @@
      <string notr="true">background-color: rgb(218, 218, 218);</string>
     </property>
     <property name="text">
-     <string>Exit</string>
+     <string>Back</string>
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>exit.png</normaloff>exit.png</iconset>
+      <normaloff>back.png</normaloff>back.png</iconset>
     </property>
     <property name="shortcut">
-     <string>Esc</string>
+     <string>Backspace</string>
     </property>
    </widget>
    <widget class="QLabel" name="lbl_date">

@@ -120,7 +120,7 @@ class main(QtWidgets.QMainWindow):
         loadUi('UI/main.ui',self)    
         
         self.btn_pred.clicked.connect(self.on_pred)
-        self.btn_exit.clicked.connect(self.on_exit)
+        self.btn_logout.clicked.connect(self.on_logout)
         self.btn_tut.clicked.connect(self.on_tut)
         info = utility.user_info()
         self.lbl_name.setText(info['u_name'])
@@ -131,11 +131,16 @@ class main(QtWidgets.QMainWindow):
         self.prediction.show()
         self.hide()
 
-    def on_exit(self):
-        sys.exit()
-
     def on_tut(self):
-        os.system('tutorial.py')
+            os.system('tutorial.py')
+
+
+    def on_logout(self):
+        self.lg = login()
+        self.lg.show()
+        self.hide()
+        # utility.logout()
+  
         
 
 class prediction(QtWidgets.QMainWindow):
@@ -158,7 +163,7 @@ class prediction(QtWidgets.QMainWindow):
         self.timer2.timeout.connect(self.update_frame)
         self.timer2.start(5)
         self.btn_snap.clicked.connect(self.snap)
-        self.btn_exit.clicked.connect(self.exit)
+        self.btn_back.clicked.connect(self.back)
 
     def update_time(self):
         # self.q_lcdn.display(QtCore.QTime.currentTime().toString())
@@ -183,24 +188,24 @@ class prediction(QtWidgets.QMainWindow):
 
         self.x1,self.y1,self.x2,self.y2 = 20, 20, 220, 270
         img_cropped = self.image[self.y1:self.y2, self.x1:self.x2] 
-        cv2.imwrite('preview/capture.jpg', img_cropped)
+        cv2.imwrite('predict/capture.jpg', img_cropped)
         # cv2.imwrite('preview/capture' +  str(nam) + '.jpg', img_cropped)
 
         bpath = os.getcwd()
-        fpath = 'preview'
+        fpath = 'predict'
         path = os.path.join(bpath,fpath,'capture.jpg')
 
         self.lbl_img_snap.setPixmap(QtGui.QPixmap(path))
         self.lbl_img_snap.show()
 
-        imgs = cv2.imread(path)
-        edges = cv2.Canny(imgs, 100,200)
+        # imgs = cv2.imread(path)
+        edges = cv2.Canny(img_cropped, 75,150)
         # cv2.imshow("edges", edges)
-        cv2.imwrite('predict/capture.jpg', edges)
+        cv2.imwrite('predict/capture1.jpg', edges)
         
         bpath = os.getcwd()
         fpath = 'predict'
-        path1 = os.path.join(bpath,fpath,'capture.jpg')
+        path1 = os.path.join(bpath,fpath,'capture1.jpg')
         
         # CNN Predictor Code Block
 
@@ -327,7 +332,7 @@ class prediction(QtWidgets.QMainWindow):
             self.lbl_cam.setPixmap(QtGui.QPixmap.fromImage(outImage))
             self.lbl_cam.setScaledContents(True)
 
-    def exit(self):
+    def back(self):
         self.mn = main()
         self.mn.show()
         self.hide()

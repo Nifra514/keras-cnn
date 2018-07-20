@@ -3,8 +3,6 @@ import unittest
 import os
 import PyQt5
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.uic import loadUi
-
 import utility
 import json
 

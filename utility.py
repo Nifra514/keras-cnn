@@ -44,5 +44,11 @@ def get_token():
     #get token from local storage
     return db.get("token")
 
+# def logout():
+#     #remove token from local storages
+#     db.dpop("token",token)
+   
+  
+    
 
 
