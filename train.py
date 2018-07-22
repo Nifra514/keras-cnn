@@ -70,7 +70,7 @@ try:
 
                 train_datagen = ImageDataGenerator(
                         rescale=1./255,
-                        rotation_range=40,
+                        rotation_range=20,
                         width_shift_range=0.2,
                         height_shift_range=0.2,
                         shear_range=0.2,
@@ -108,6 +108,7 @@ try:
                         )
         except ValueError:
                 logging.error('Input_Error: {}'.format('Invalid input found in the file'))
+                
         # to save model weights
         model.save_weights('./models/trained_model4.h5')
 

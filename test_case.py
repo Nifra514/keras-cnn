@@ -18,6 +18,10 @@ class TestUM(unittest.TestCase):
         self.assertEqual( utility.make_login('qweqwe','asd456')['status'], True)
 
     
+    def test_logout(self):
+        self.assertEqual( utility.logout(),True)
+
+    
 
 if __name__ == '__main__':
     unittest.main()

@@ -15,6 +15,12 @@ import glob
 import cv2
 import logging
 
+import requests
+import json
+import utility
+import pickledb
+
+
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 logging.basicConfig(filename='Log/predict_log.log', level=logging.DEBUG,
@@ -121,8 +127,9 @@ try:
 
     
 
-        #load model 
-        model.load_weights('./models/trained_model3.h5')
+        #download and load model 
+        # utility.load_model()
+        model.load_weights('./models/trained_model.h5')
 
     except ValueError:
         logging.error('Class_Error: {}'.format('Invalid number of classes'))

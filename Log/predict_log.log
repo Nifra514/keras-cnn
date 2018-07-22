@@ -3,3 +3,73 @@
 2018-07-15 11:18:31,625:ERROR:Input_Error: Invalid input found in the file
 2018-07-15 11:19:12,557:ERROR:Class_Error: Invalid number of classes
 2018-07-15 11:20:18,449:ERROR:Class_Error: Invalid number of classes
+2018-07-22 10:19:44,309:DEBUG:Starting new HTTP connection (1): localhost
+2018-07-22 10:19:44,569:DEBUG:http://localhost:8888 "GET /asllearning/ai_model/trained_model2.h5 HTTP/1.1" 200 3821520
+2018-07-22 10:24:52,137:DEBUG:Starting new HTTP connection (1): localhost
+2018-07-22 10:24:52,147:DEBUG:http://localhost:8888 "GET /asllearning/ai_model/trained_model2.h5 HTTP/1.1" 200 3821520
+2018-07-22 10:24:52,213:DEBUG:SHIFT_JIS Japanese prober hit error at byte 32
+2018-07-22 10:24:52,214:DEBUG:EUC-JP Japanese prober hit error at byte 0
+2018-07-22 10:24:52,214:DEBUG:GB2312 Chinese prober hit error at byte 32
+2018-07-22 10:24:52,214:DEBUG:EUC-KR Korean prober hit error at byte 0
+2018-07-22 10:24:52,215:DEBUG:CP949 Korean prober hit error at byte 32
+2018-07-22 10:24:52,215:DEBUG:Big5 Chinese prober hit error at byte 0
+2018-07-22 10:24:52,215:DEBUG:EUC-TW Taiwan prober hit error at byte 0
+2018-07-22 10:24:56,612:DEBUG:windows-1251 confidence = 0.03479774579970907, below negative shortcut threshhold 0.05
+2018-07-22 10:25:00,875:DEBUG:KOI8-R confidence = 0.03624060639026463, below negative shortcut threshhold 0.05
+2018-07-22 10:25:05,585:DEBUG:ISO-8859-5 confidence = 0.03000680990646631, below negative shortcut threshhold 0.05
+2018-07-22 10:25:09,713:DEBUG:MacCyrillic confidence = 0.031131242976183873, below negative shortcut threshhold 0.05
+2018-07-22 10:25:14,156:DEBUG:IBM866 confidence = 0.03197730324504219, below negative shortcut threshhold 0.05
+2018-07-22 10:25:18,688:DEBUG:IBM855 confidence = 0.03935723028503625, below negative shortcut threshhold 0.05
+2018-07-22 10:25:22,903:DEBUG:ISO-8859-7 confidence = 0.038258305899009165, below negative shortcut threshhold 0.05
+2018-07-22 10:25:27,256:DEBUG:windows-1253 confidence = 0.038794175673162797, below negative shortcut threshhold 0.05
+2018-07-22 10:25:31,764:DEBUG:ISO-8859-5 confidence = 0.02906208210675645, below negative shortcut threshhold 0.05
+2018-07-22 10:25:35,914:DEBUG:windows-1251 confidence = 0.02939052480182342, below negative shortcut threshhold 0.05
+2018-07-22 10:25:41,357:DEBUG:TIS-620 confidence = 0.03376639094269613, below negative shortcut threshhold 0.05
+2018-07-22 10:25:44,922:DEBUG:ISO-8859-9 confidence = 0.03036796939268806, below negative shortcut threshhold 0.05
+2018-07-22 10:25:55,530:DEBUG:windows-1255 confidence = 0.019759360000285896, below negative shortcut threshhold 0.05
+2018-07-22 10:26:03,874:DEBUG:windows-1255 confidence = 0.019827210398946842, below negative shortcut threshhold 0.05
+2018-07-22 10:26:13,108:DEBUG:windows-1251 not active
+2018-07-22 10:26:13,110:DEBUG:KOI8-R not active
+2018-07-22 10:26:13,110:DEBUG:ISO-8859-5 not active
+2018-07-22 10:26:13,110:DEBUG:MacCyrillic not active
+2018-07-22 10:26:13,111:DEBUG:IBM866 not active
+2018-07-22 10:26:13,112:DEBUG:IBM855 not active
+2018-07-22 10:26:13,114:DEBUG:ISO-8859-7 not active
+2018-07-22 10:26:13,114:DEBUG:windows-1253 not active
+2018-07-22 10:26:13,115:DEBUG:ISO-8859-5 not active
+2018-07-22 10:26:13,115:DEBUG:windows-1251 not active
+2018-07-22 10:26:13,115:DEBUG:TIS-620 not active
+2018-07-22 10:26:13,115:DEBUG:ISO-8859-9 not active
+2018-07-22 10:26:13,115:DEBUG:windows-1255 Hebrew confidence = 0.0
+2018-07-22 10:26:13,116:DEBUG:windows-1255 not active
+2018-07-22 10:26:13,116:DEBUG:windows-1255 not active
+2018-07-22 10:26:13,116:DEBUG:no probers hit minimum threshold
+2018-07-22 10:26:13,116:DEBUG:utf-8  confidence = 0.010000000000000009
+2018-07-22 10:26:13,116:DEBUG:SHIFT_JIS Japanese confidence = 0.01
+2018-07-22 10:26:13,116:DEBUG:EUC-JP Japanese confidence = 0.01
+2018-07-22 10:26:13,117:DEBUG:GB2312 Chinese confidence = 0.01
+2018-07-22 10:26:13,117:DEBUG:EUC-KR Korean confidence = 0.01
+2018-07-22 10:26:13,117:DEBUG:CP949 Korean confidence = 0.01
+2018-07-22 10:26:13,117:DEBUG:Big5 Chinese confidence = 0.01
+2018-07-22 10:26:13,117:DEBUG:EUC-TW Taiwan confidence = 0.01
+2018-07-22 10:26:13,117:DEBUG:windows-1251 Russian confidence = 0.03479774579970907
+2018-07-22 10:26:13,118:DEBUG:KOI8-R Russian confidence = 0.03624060639026463
+2018-07-22 10:26:13,118:DEBUG:ISO-8859-5 Russian confidence = 0.03000680990646631
+2018-07-22 10:26:13,118:DEBUG:MacCyrillic Russian confidence = 0.031131242976183873
+2018-07-22 10:26:13,118:DEBUG:IBM866 Russian confidence = 0.03197730324504219
+2018-07-22 10:26:13,118:DEBUG:IBM855 Russian confidence = 0.03935723028503625
+2018-07-22 10:26:13,118:DEBUG:ISO-8859-7 Greek confidence = 0.038258305899009165
+2018-07-22 10:26:13,118:DEBUG:windows-1253 Greek confidence = 0.038794175673162797
+2018-07-22 10:26:13,118:DEBUG:ISO-8859-5 Bulgairan confidence = 0.02906208210675645
+2018-07-22 10:26:13,119:DEBUG:windows-1251 Bulgarian confidence = 0.02939052480182342
+2018-07-22 10:26:13,119:DEBUG:TIS-620 Thai confidence = 0.03376639094269613
+2018-07-22 10:26:13,119:DEBUG:ISO-8859-9 Turkish confidence = 0.03036796939268806
+2018-07-22 10:26:13,119:DEBUG:windows-1255 Hebrew confidence = 0.0
+2018-07-22 10:26:13,119:DEBUG:windows-1255 Hebrew confidence = 0.019759360000285896
+2018-07-22 10:26:13,119:DEBUG:windows-1255 Hebrew confidence = 0.019827210398946842
+2018-07-22 10:26:13,119:DEBUG:windows-1255 Hebrew confidence = 0.019827210398946842
+2018-07-22 10:26:15,295:ERROR:Class_Error: Invalid number of classes
+2018-07-22 13:55:05,636:DEBUG:Starting new HTTP connection (1): localhost
+2018-07-22 13:55:08,202:DEBUG:http://localhost:8888 "GET /asllearning/ai_model/trained_model2.h5 HTTP/1.1" 200 3821520
+2018-07-22 14:00:59,128:DEBUG:Starting new HTTP connection (1): localhost
+2018-07-22 14:00:59,384:DEBUG:http://localhost:8888 "GET /asllearning/ai_model/trained_model2.h5 HTTP/1.1" 200 3821520

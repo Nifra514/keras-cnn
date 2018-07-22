@@ -26,12 +26,12 @@ class loading(QtWidgets.QMainWindow):
         self.timer.timeout.connect(self.test_connection)
         self.timer.start(10)
 
-    def messagebox(self,title,message):
-        msgbox = QtWidgets.QMessageBox()
-        msgbox.setWindowTitle(title)
-        msgbox.setText(message)
-        msgbox.setStandardButtons(QtWidgets.QMessageBox.Ok)
-        msgbox.exec_()
+    # def messagebox(self,title,message):
+    #     msgbox = QtWidgets.QMessageBox()
+    #     msgbox.setWindowTitle(title)
+    #     msgbox.setText(message)
+    #     msgbox.setStandardButtons(QtWidgets.QMessageBox.Ok)
+    #     msgbox.exec_()
 
         
     def test_connection(self):
@@ -49,7 +49,7 @@ class loading(QtWidgets.QMainWindow):
             
         else:  
             conection_error= str(connection)
-            self.messagebox('Connection Error',conection_error)
+            QtWidgets.QMessageBox.warning(self,'Connection Error',conection_error)
             sys.exit()
             
         
@@ -60,13 +60,6 @@ class login(QtWidgets.QMainWindow):
         self.btn_login.clicked.connect(self.on_login)
         self.btn_reg.clicked.connect(self.on_reg)
         self.btn_exit.clicked.connect(self.on_exit)
-
-    def messagebox(self,title,message):
-        msgbox = QtWidgets.QMessageBox()
-        msgbox.setWindowTitle(title)
-        msgbox.setText(message)
-        msgbox.setStandardButtons(QtWidgets.QMessageBox.Ok)
-        msgbox.exec_()
         
     def clear(self):
         self.txt_uname.setText("")
@@ -103,7 +96,7 @@ class login(QtWidgets.QMainWindow):
             self.hide()
             
         else:   
-            self.messagebox('Invalid Login',token['data'])
+            QtWidgets.QMessageBox.critical(self,'Invalid Login',token['data'])
             self.clear()
 
         
@@ -118,13 +111,15 @@ class main(QtWidgets.QMainWindow):
     def __init__(self):
         super(main,self).__init__()
         loadUi('UI/main.ui',self)    
-        
+
+        utility.load_model()
+
         self.btn_pred.clicked.connect(self.on_pred)
         self.btn_logout.clicked.connect(self.on_logout)
         self.btn_tut.clicked.connect(self.on_tut)
         info = utility.user_info()
         self.lbl_name.setText(info['u_name'])
-        
+
 
     def on_pred(self):
         self.prediction = prediction()
@@ -139,7 +134,7 @@ class main(QtWidgets.QMainWindow):
         self.lg = login()
         self.lg.show()
         self.hide()
-        # utility.logout()
+        utility.logout()
   
         
 
@@ -286,7 +281,7 @@ class prediction(QtWidgets.QMainWindow):
         model.add(Activation('softmax'))
 
         #load model 
-        model.load_weights('./models/trained_model3.h5')
+        model.load_weights('./models/trained_model.h5')
 
         model.compile(loss='categorical_crossentropy',
                     optimizer=Adam(lr=1e-3),
