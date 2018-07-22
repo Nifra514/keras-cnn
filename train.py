@@ -100,10 +100,10 @@ try:
 
                 model.fit_generator(
                         training,
-                        steps_per_epoch=1,
-                        epochs=1,
+                        steps_per_epoch=25,
+                        epochs=20,
                         validation_data=testing,
-                        validation_steps=1,
+                        validation_steps=15,
                         # callbacks=[checkpointer]
                         )
         except ValueError:
