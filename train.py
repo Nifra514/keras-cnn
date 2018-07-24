@@ -99,10 +99,10 @@ model.fit_generator(
         steps_per_epoch=250,
         epochs=50,
         validation_data=testing,
-        validation_steps=65,
+        validation_steps=75,
         # callbacks=[checkpointer]
         )
 
 
 # to save model weights
-model.save_weights('./models/trained_model.h5')
+model.save_weights('./models/trained_model_1.h5')
