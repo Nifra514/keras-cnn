@@ -69,36 +69,42 @@ class login(QtWidgets.QMainWindow):
     def on_login(self):
         
         # connect = pymysql.connect(host='localhost', user='root', password='',db='asl')
+        connection = utility.check_internet()
+        if connection == 200:  
 
-        uname = self.txt_uname.text()
-        password = self.txt_password.text()
+            uname = self.txt_uname.text()
+            password = self.txt_password.text()
 
-        # pw = password.encode("utf-8")
-        # hash = hashlib.md5(pw)
-        # pword = hash.hexdigest()   
+            # pw = password.encode("utf-8")
+            # hash = hashlib.md5(pw)
+            # pword = hash.hexdigest()   
 
-        # con = connect.cursor()
-        # sql = "SELECT * FROM user_details WHERE username = '%s' AND password = '%s'"%(uname,pword)
-        
-        # con.execute(sql)
-        # result = con.fetchall()
-        
-        #api login
-        token = utility.make_login(uname, password)
-        print("RECIVED TOKEN %s", (token))
-        
-
-        if (token["status"] == True):
-            #save token
-            utility.set_token(token["data"])
-            self.main = main()
-            self.main.show()
-            self.hide()
+            # con = connect.cursor()
+            # sql = "SELECT * FROM user_details WHERE username = '%s' AND password = '%s'"%(uname,pword)
             
-        else:   
-            QtWidgets.QMessageBox.critical(self,'Invalid Login',token['data'])
-            self.clear()
+            # con.execute(sql)
+            # result = con.fetchall()
+            
+            #api login
+            token = utility.make_login(uname, password)
+            print("RECIVED TOKEN %s", (token))
+            
 
+            if (token["status"] == True):
+                #save token
+                utility.set_token(token["data"])
+                self.main = main()
+                self.main.show()
+                self.hide()
+                
+            else:   
+                QtWidgets.QMessageBox.critical(self,'Invalid Login',token['data'])
+                self.clear()
+                
+        else:  
+            conection_error= str(connection)
+            QtWidgets.QMessageBox.warning(self,'Connection Error',conection_error)
+            sys.exit()
         
 
     def on_reg(self):
