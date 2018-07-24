@@ -73,3 +73,4 @@
 2018-07-22 13:55:08,202:DEBUG:http://localhost:8888 "GET /asllearning/ai_model/trained_model2.h5 HTTP/1.1" 200 3821520
 2018-07-22 14:00:59,128:DEBUG:Starting new HTTP connection (1): localhost
 2018-07-22 14:00:59,384:DEBUG:http://localhost:8888 "GET /asllearning/ai_model/trained_model2.h5 HTTP/1.1" 200 3821520
+2018-07-24 08:03:37,939:ERROR:Class_Error: Invalid number of classes
