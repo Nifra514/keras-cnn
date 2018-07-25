@@ -96,12 +96,12 @@ testing = test_datagen.flow_from_directory(
 
 model.fit_generator(
         training,
-        steps_per_epoch=125,
-        epochs=50,
+        steps_per_epoch=1,
+        epochs=1,
         validation_data=testing,
-        validation_steps=38,
+        validation_steps=1,
         # callbacks=[checkpointer]
         )
 
 # to save model weights
-model.save_weights('./models/trained_model_2.h5')
+model.save_weights('./models/trained_model85.h5')
