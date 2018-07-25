@@ -67,18 +67,18 @@ model.compile(loss='categorical_crossentropy',
 train_datagen = ImageDataGenerator(
         rescale=1./255,
         rotation_range=20,
-        width_shift_range=0.2,
-        height_shift_range=0.2,
-        shear_range=0.2,
-        zoom_range=0.2,
+        width_shift_range=0.1,
+        height_shift_range=0.1,
+        shear_range=0.1,
+        zoom_range=0.1,
         horizontal_flip=True)
 
-test_datagen = ImageDataGenerator(rescale=1. / 255)
+test_datagen = ImageDataGenerator(rescale=1./255)
 
 training = train_datagen.flow_from_directory(
         'Dataset/train',
         target_size=(img_width, img_height), 
-        batch_size=32,
+        batch_size=16,
         class_mode='categorical',
         # color_mode='grayscale',
         # save_to_dir='preview',
@@ -88,7 +88,7 @@ training = train_datagen.flow_from_directory(
 testing = test_datagen.flow_from_directory(
         'Dataset/test',
         target_size=(img_width, img_height),
-        batch_size=32,
+        batch_size=16,
         class_mode='categorical',
         # color_mode='grayscale'
         )
@@ -96,12 +96,12 @@ testing = test_datagen.flow_from_directory(
 
 model.fit_generator(
         training,
-        steps_per_epoch=125,
-        epochs=50,
+        steps_per_epoch=250,
+        epochs=65,
         validation_data=testing,
-        validation_steps=38,
+        validation_steps=75,
         # callbacks=[checkpointer]
         )
 
 # to save model weights
-model.save_weights('./models/trained_model_2.h5')
+model.save_weights('./models/trained_model_3.h5')
