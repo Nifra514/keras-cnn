@@ -103,6 +103,5 @@ model.fit_generator(
         # callbacks=[checkpointer]
         )
 
-
 # to save model weights
 model.save_weights('./models/trained_model_2.h5')
