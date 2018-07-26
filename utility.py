@@ -49,19 +49,14 @@ def logout():
     return db.deldb()
 
 
-def load_model():
-    # check_internet() 
+def download_model(): 
 
-    url='http://localhost:8888/asllearning/ai_model/trained_model2.h5'
-
+    url='http://localhost:8888/asllearning/ai_model/trained_model_3.h5'
     resp = requests.get(url)
-    print(resp.status_code)
-    if resp.status_code == 200:
-        with open ('models/trained_model.h5','wb') as f:
-            f.write(resp.content)
+    with open ('models/trained_model.h5','wb') as f:
+        f.write(resp.content)
+    # return True
 
-    else:
-        print("zfscvxcvx")
     
 
 

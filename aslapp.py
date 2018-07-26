@@ -87,8 +87,7 @@ class login(QtWidgets.QMainWindow):
             
             #api login
             token = utility.make_login(uname, password)
-            print("RECIVED TOKEN %s", (token))
-            
+            # print("RECIVED TOKEN %s", (token))            
 
             if (token["status"] == True):
                 #save token
@@ -119,7 +118,7 @@ class main(QtWidgets.QMainWindow):
         loadUi('UI/main.ui',self)    
 
         #Download model from server and save to local folder
-        # utility.load_model()
+        utility.download_model()
 
         self.btn_pred.clicked.connect(self.on_pred)
         self.btn_logout.clicked.connect(self.on_logout)
@@ -134,7 +133,7 @@ class main(QtWidgets.QMainWindow):
         self.hide()
 
     def on_tut(self):
-            os.system('tutorial.py')
+        os.system('tutorial.py')
 
 
     def on_logout(self):
@@ -318,7 +317,7 @@ class prediction(QtWidgets.QMainWindow):
         model.add(Activation('softmax'))
 
         #load model 
-        model.load_weights('./models/trained_model_1.h5')
+        model.load_weights('./models/trained_model.h5')
 
         model.compile(loss='categorical_crossentropy',
                     optimizer=Adam(lr=1e-3),
