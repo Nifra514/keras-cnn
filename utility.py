@@ -62,8 +62,8 @@ def write_log(user_id, log_type, log_data, action, risk):
     dataset = {"user_id" : user_id,"lg_type" : log_type,"data" : data, "action" : action, "risk" : risk}
     headers = {'x-token':get_token()}
     resp = requests.post('http://localhost:8888/asllearning/api/log.php', data=dataset, headers=headers)
-    print (resp.text)
+    # print (resp.text)
     # result = json.loads(resp.text)
-    # return result
+    return resp
 
 
