@@ -21,7 +21,8 @@ class TestUM(unittest.TestCase):
     def test_logout(self):
         self.assertEqual( utility.logout(),True)
 
-    
+    def test_write_log(self):
+        self.assertEqual( utility.write_log(0,'test','test data','testing','None'),True)
 
 if __name__ == '__main__':
     unittest.main()
