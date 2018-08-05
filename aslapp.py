@@ -399,7 +399,7 @@ class prediction(QtWidgets.QMainWindow):
             images = np.vstack([x])
 
             p_classes = model.predict_classes(images)
-            # print (p_classes)
+            
             letter = names[p_classes[0]]
             print(letter)
             self.lbl_ans.setText(letter)
