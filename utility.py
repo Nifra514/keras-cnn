@@ -22,17 +22,15 @@ token = ""
 
 def make_login(uname, password):
     data = {"uname": uname,"password":password}
-    resp = requests.post('http://localhost:8888/asllearning/api/login.php', data=data)
-    # print (resp.text)
+    resp = requests.post(' http://asllearning.info/api/login.php', data=data)
     token = json.loads(resp.text)
     return token
 
 
 def user_info():
     # User info 
-    print('- GET USER FROM TOKEN')
     headers = {'x-token':get_token()}
-    resp = requests.get('http://localhost:8888/asllearning/api/user.php',headers=headers)
+    resp = requests.get(' http://asllearning.info/api/user.php',headers=headers)
     return json.loads(resp.text)
 
 
@@ -51,19 +49,16 @@ def logout():
 
 def download_model(): 
 
-    url='http://localhost:8888/asllearning/ai_model/trained_model_3.h5'
+    url=' http://asllearning.info/ai_model/trained_model.h5'
     resp = requests.get(url)
     with open ('models/trained_model.h5','wb') as f:
         f.write(resp.content)
-    # return True
 
 def write_log(user_id, log_type, log_data, action, risk):
     data = json.dumps(log_data)
     dataset = {"user_id" : user_id,"lg_type" : log_type,"data" : data, "action" : action, "risk" : risk}
     headers = {'x-token':get_token()}
-    requests.post('http://localhost:8888/asllearning/api/log.php', data=dataset, headers=headers)
-    # print (resp.text)
-    # result = json.loads(resp.text)
+    requests.post(' http://asllearning.info/api/log.php', data=dataset, headers=headers)
     return True
 
 

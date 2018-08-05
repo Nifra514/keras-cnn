@@ -125,7 +125,7 @@ try:
     
 
         #load model 
-        model.load_weights('./models/trained_model_3.h5')
+        model.load_weights('./models/trained_model.h5')
 
     except ValueError:
         logging.error('Class_Error: {}'.format('Invalid number of classes'))

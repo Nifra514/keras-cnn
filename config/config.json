@@ -1,0 +1,12 @@
+{
+	"path1":"predict/capture.jpg",
+	"path2":"predict/capture1.jpg",
+	"system":0,
+	"lg_log":"Log",
+	"lg_error":"Error",
+	"lg_warning":"Warning",
+	"rsk_none":"None",
+	"rsk_low":"Low",
+	"rsk_medium":"Medium",
+	"rsk_high":"High"
+}

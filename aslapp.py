@@ -17,6 +17,8 @@ import json
 import utility
 import pickledb
 
+with open('config/config.json') as json_data:
+    jsd = json.load(json_data)
 
 class loading(QtWidgets.QMainWindow):
     def __init__(self):
@@ -51,7 +53,7 @@ class login(QtWidgets.QMainWindow):
         super(login, self).__init__()
         loadUi('UI/login.ui', self)
         self.btn_login.clicked.connect(self.on_login)
-        self.btn_reg.clicked.connect(self.on_reg)
+        self.btn_reg.clicked.connect(self.on_register)
         self.btn_exit.clicked.connect(self.on_exit)
 
     def clear(self):
@@ -88,9 +90,9 @@ class login(QtWidgets.QMainWindow):
                 self, 'Connection Error', conection_error)
             sys.exit()
 
-    def on_reg(self):
+    def on_register(self):
         webbrowser.open(
-            'http://localhost:8888/asllearning/Views/registration.php')
+            'http://asllearning.info/Views/registration.php')
 
     def on_exit(self):
         sys.exit()
@@ -104,25 +106,27 @@ class main(QtWidgets.QMainWindow):
         # Download model from server and save to local folder
         utility.download_model()
 
-        self.btn_pred.clicked.connect(self.on_pred)
+        self.btn_pred.clicked.connect(self.on_predictor)
         self.btn_logout.clicked.connect(self.on_logout)
-        self.btn_tut.clicked.connect(self.on_tut)
+        self.btn_tut.clicked.connect(self.on_tutorial)
 
         self.info = utility.user_info()
         self.lbl_name.setText(self.info['u_name'])
 
-    def on_pred(self):
+        
+
+    def on_predictor(self):
 
         try:
             self.prediction = prediction()
             self.prediction.show()
             self.hide()
-
+            
             user_id = self.info['id']
-            log_type = "Log"
+            log_type = jsd["lg_log"]
             log_data = "User: "+self.info['id']+" loading predictor"
             action = "Load Predictor"
-            risk = "None"
+            risk = jsd["rsk_none"]
 
             utility.write_log(user_id, log_type, log_data, action, risk)
 
@@ -131,22 +135,23 @@ class main(QtWidgets.QMainWindow):
             QtWidgets.QMessageBox.critical(
                 self, 'Error', "Error Loading Predictor. Please Try Again Later!!!")
 
-            user_id = 0
-            log_type = "Error"
+            user_id = jsd["system"]
+            log_type = jsd["lg_error"]
             log_data = "Error loading predictor for user: "+self.info['id']
             action = "Load Predictor"
-            risk = "High"
+            risk = jsd["rsk_high"]
 
             utility.write_log(user_id, log_type, log_data, action, risk)
 
-    def on_tut(self):
+    def on_tutorial(self):
         try:
 
             user_id = self.info['id']
-            log_type = "Log"
+            log_type = jsd["lg_log"]
             log_data = "User: "+self.info['id']+" loading tutorial"
+            
             action = "Load Tutorial"
-            risk = "None"
+            risk = jsd["rsk_none"]
 
             utility.write_log(user_id, log_type, log_data, action, risk)
 
@@ -155,22 +160,22 @@ class main(QtWidgets.QMainWindow):
         except:
             QtWidgets.QMessageBox.warning(
                 self, 'Warning', "Unable To Load Tutorial At The Moment. Please Try Again Later!!!")
-            user_id = 0
-            log_type = "Warning"
+            user_id = jsd["system"]
+            log_type = jsd["lg_warning"]
             log_data = "Unable to load tutorial for user: "+self.info['id']
             action = "Load Tutorial"
-            risk = "Low"
+            risk = jsd["rsk_low"]
 
             utility.write_log(user_id, log_type, log_data, action, risk)
 
     def on_logout(self):
 
         user_id = self.info['id']
-        log_type = "Log"
+        log_type = jsd["lg_log"]
         log_data = "User "+self.info['id'] + \
             " logged out from ASLapp successfully"
         action = "Logout"
-        risk = "None"
+        risk = jsd["rsk_none"]
 
         utility.write_log(user_id, log_type, log_data, action, risk)
 
@@ -237,20 +242,21 @@ class prediction(QtWidgets.QMainWindow):
         try:
             self.x1, self.y1, self.x2, self.y2 = 20, 20, 220, 270
             img_cropped = self.image[self.y1:self.y2, self.x1:self.x2]
-            cv2.imwrite('predict/capture.jpg', img_cropped)
+              
+            cv2.imwrite(jsd["path1"], img_cropped)
 
-            bpath = os.getcwd()
-            fpath = 'predict'
-            path = os.path.join(bpath, fpath, 'capture.jpg')
-
-            self.lbl_img_snap.setPixmap(QtGui.QPixmap(path))
+            # bpath = os.getcwd()
+            # fpath = 'predict'
+            # path = os.path.join(bpath, fpath, 'capture.jpg')
+            
+            self.lbl_img_snap.setPixmap(QtGui.QPixmap(jsd["path1"]))
             self.lbl_img_snap.show()
 
             user_id = self.info['id']
-            log_type = "Log"
+            log_type = jsd["lg_log"]
             log_data = "User: "+self.info['id']+" snaped successfully"
             action = "Snap"
-            risk = "None"
+            risk = jsd["rsk_none"]
 
             utility.write_log(user_id, log_type, log_data, action, risk)
 
@@ -258,24 +264,22 @@ class prediction(QtWidgets.QMainWindow):
 
             QtWidgets.QMessageBox.critical(
                 self, 'Error', "Error Taking Snap. Please Try Again Later!!!")
-            user_id = 0
-            log_type = "Error"
+            user_id = jsd["system"]
+            log_type = jsd["lg_error"]
             log_data = "Snapping failed for user: "+self.info['id']
             action = "Snap"
-            risk = "High"
+            risk = jsd["rsk_high"]
 
             utility.write_log(user_id, log_type, log_data, action, risk)
 
         try:
 
-            # imgs = cv2.imread(path)
             edges = cv2.Canny(img_cropped, 75, 150)
-            # cv2.imshow("edges", edges)
-            cv2.imwrite('predict/capture1.jpg', edges)
+            cv2.imwrite(jsd["path2"], edges)
 
-            bpath = os.getcwd()
-            fpath = 'predict'
-            path1 = os.path.join(bpath, fpath, 'capture1.jpg')
+            # bpath = os.getcwd()
+            # fpath = 'predict'
+            # path1 = os.path.join(bpath, fpath, 'capture1.jpg')
 
             # CNN Predictor Code Block
 
@@ -333,7 +337,7 @@ class prediction(QtWidgets.QMainWindow):
 
             }
 
-            _dir = str(path1)
+            _dir = jsd["path2"]
 
             # input
             model = Sequential()
@@ -403,12 +407,12 @@ class prediction(QtWidgets.QMainWindow):
             # End Of CNN Predictor Code Block
 
             user_id = self.info['id']
-            log_type = "Log"
+            log_type = jsd["lg_log"]
             log_data = "User: " + \
                 self.info['id']+" predicted the letter or number: " + \
                 letter + " successfully"
             action = "Prediction"
-            risk = "None"
+            risk = jsd["rsk_none"]
 
             utility.write_log(user_id, log_type, log_data, action, risk)
 
@@ -416,11 +420,11 @@ class prediction(QtWidgets.QMainWindow):
 
             QtWidgets.QMessageBox.critical(
                 self, 'Error', "Error In Prediction. Please Try Again Later!!!")
-            user_id = 0
-            log_type = "Error"
+            user_id = jsd["system"]
+            log_type = jsd["lg_error"]
             log_data = "Prediction failed for user: "+self.info['id']
             action = "Prediction"
-            risk = "High"
+            risk = jsd["rsk_high"]
 
             utility.write_log(user_id, log_type, log_data, action, risk)
 
@@ -434,10 +438,10 @@ class prediction(QtWidgets.QMainWindow):
         # cv2.VideoCapture(0).release()
 
         user_id = self.info['id']
-        log_type = "Log"
+        log_type = jsd["lg_log"]
         log_data = "User: "+self.info['id']+" left predictor"
         action = "Predictor"
-        risk = "None"
+        risk = jsd["rsk_none"]
 
         utility.write_log(user_id, log_type, log_data, action, risk)
 
