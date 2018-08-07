@@ -95,7 +95,7 @@ class login(QtWidgets.QMainWindow):
             'http://asllearning.info/Views/registration.php')
 
     def on_exit(self):
-        sys.exit()
+        sys.exit(0)
 
 
 class main(QtWidgets.QMainWindow):
@@ -423,11 +423,7 @@ class prediction(QtWidgets.QMainWindow):
     def back(self):
         self.mn = main()
         self.mn.show()
-        self.hide()
-
-        # self.cap.release()
-        # cv2.destroyAllWindows()
-        # cv2.VideoCapture(0).release()
+        self.close()
 
         user_id = self.info['id']
         log_type = jsd["lg_log"]
