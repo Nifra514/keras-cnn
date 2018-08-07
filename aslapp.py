@@ -242,15 +242,14 @@ class prediction(QtWidgets.QMainWindow):
         try:
             self.x1, self.y1, self.x2, self.y2 = 20, 20, 220, 270
             img_cropped = self.image[self.y1:self.y2, self.x1:self.x2]
-              
+                
             cv2.imwrite(jsd["path1"], img_cropped)
-
-            # bpath = os.getcwd()
-            # fpath = 'predict'
-            # path = os.path.join(bpath, fpath, 'capture.jpg')
             
             self.lbl_img_snap.setPixmap(QtGui.QPixmap(jsd["path1"]))
             self.lbl_img_snap.show()
+
+            edges = cv2.Canny(img_cropped, 75, 150)
+            cv2.imwrite(jsd["path2"], edges)
 
             user_id = self.info['id']
             log_type = jsd["lg_log"]
@@ -273,13 +272,6 @@ class prediction(QtWidgets.QMainWindow):
             utility.write_log(user_id, log_type, log_data, action, risk)
 
         try:
-
-            edges = cv2.Canny(img_cropped, 75, 150)
-            cv2.imwrite(jsd["path2"], edges)
-
-            # bpath = os.getcwd()
-            # fpath = 'predict'
-            # path1 = os.path.join(bpath, fpath, 'capture1.jpg')
 
             # CNN Predictor Code Block
 
@@ -387,8 +379,8 @@ class prediction(QtWidgets.QMainWindow):
             model.load_weights('./models/trained_model.h5')
 
             model.compile(loss='categorical_crossentropy',
-                          optimizer=Adam(lr=1e-3),
-                          metrics=['categorical_accuracy'])
+                            optimizer=Adam(lr=1e-3),
+                            metrics=['categorical_accuracy'])
 
             img = image.load_img(_dir, target_size=(img_width, img_height))
 
