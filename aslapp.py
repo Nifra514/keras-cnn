@@ -181,7 +181,7 @@ class main(QtWidgets.QMainWindow):
 
         self.lg = login()
         self.lg.show()
-        self.hide()
+        self.close()
         utility.logout()
 
 
