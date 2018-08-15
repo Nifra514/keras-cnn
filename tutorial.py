@@ -28,12 +28,6 @@ class VideoWindow(QtWidgets.QMainWindow):
                 QtWidgets.QSizePolicy.Maximum)
  
         # Create new action
-        # openAction = QtWidgets.QAction(QtGui.QIcon('open.png'), '&Open', self)        
-        # openAction.setShortcut('Ctrl+O')
-        # openAction.setStatusTip('Open movie')
-        # openAction.triggered.connect(self.openFile)
-
-        # Create new action
         setAction = QtWidgets.QAction(QtGui.QIcon('st.png'), '&Set Video', self)        
         setAction.setShortcut('Ctrl+E')
         setAction.setStatusTip('Set video')
@@ -117,11 +111,7 @@ class VideoWindow(QtWidgets.QMainWindow):
         self.playButton.setEnabled(False)
         self.errorLabel.setText("Error: " + self.mediaPlayer.errorString())
 
-# class main(QtWidgets.QMainWindow):
-#     def __init__(self):
-#         super(main,self).__init__()
-#         loadUi('UI/main.ui',self)
- 
+
  
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
