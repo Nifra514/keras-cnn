@@ -2,9 +2,6 @@ import sys
 import os
 import PyQt5
 from PyQt5 import QtCore, QtGui, QtWidgets
-# from PyQt5.QtCore import *
-# from PyQt5.QtWidgets import *
-# from PyQt5.QtGui import *
 from PyQt5.uic import loadUi
 import pymysql
 import hashlib
@@ -23,8 +20,6 @@ class prediction(QtWidgets.QMainWindow):
         self.timer = QtCore.QTimer()
         self.timer.timeout.connect(self.update_time)
         self.timer.start(10)
-        # self.btn_start.clicked.connect(self.start_cam)
-        # self.btn_snap.setCheckable(True)
         self.cap = cv2.VideoCapture(0)
         self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT,480)
         self.cap.set(cv2.CAP_PROP_FRAME_WIDTH,720)
@@ -36,7 +31,6 @@ class prediction(QtWidgets.QMainWindow):
         self.btn_back.clicked.connect(self.back)
 
     def update_time(self):
-        # self.q_lcdn.display(QtCore.QTime.currentTime().toString())
         self.lbl_time.setText(QtCore.QTime.currentTime().toString())
         self.lbl_date.setText(QtCore.QDate.currentDate().toString())
 
@@ -52,8 +46,6 @@ class prediction(QtWidgets.QMainWindow):
         
         self.displayImage(self.image, 1)
 
-        # edges1 = cv2.Canny(self.image, 75,150)
-        # cv2.imshow("edge",edges1)
                
     def snap(self):
         
@@ -65,22 +57,11 @@ class prediction(QtWidgets.QMainWindow):
             img_cropped = self.image[self.y1:self.y2, self.x1:self.x2] 
             i+=1
             name = str(i) 
-            cv2.imwrite('data_set/Y/'+ name + '.jpg', img_cropped)
-
-            # bpath = os.getcwd()
-            # fpath = 'data_set/B/'
-            # path = os.path.join(bpath,fpath,name + '.jpg')
-
-            # img = cv2.imread(path)
-            
-            # grayscaled = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) 
-            # gaus = cv2.adaptiveThreshold(grayscaled, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,cv2.THRESH_BINARY,115,1) 
+            cv2.imwrite('data_set/1/'+ name + '.jpg', img_cropped)
             edges = cv2.Canny(img_cropped, 75,150)
 
 
             cv2.imwrite('Dataset/train/Y/' +  name + '.jpg', edges)
-
-            # os.remove(path)
         
         
 
@@ -106,8 +87,6 @@ class prediction(QtWidgets.QMainWindow):
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
-    # lg = login()
-    # lg.show()
     prediction = prediction()
     prediction.show()
     sys.exit(app.exec_())
