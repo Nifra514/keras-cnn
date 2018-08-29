@@ -1,14 +1,8 @@
 import sys
-import os
 import PyQt5
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.uic import loadUi
-import pymysql
-import hashlib
-import numpy as np
 import cv2
-import tutorial
-import datetime
        
 
 class image_cap(QtWidgets.QMainWindow):
@@ -48,12 +42,12 @@ class image_cap(QtWidgets.QMainWindow):
             img_cropped = self.image[self.y1:self.y2, self.x1:self.x2] 
             i+=1
             name = str(i) 
+
             cv2.imwrite('data_set/1/'+ name + '.jpg', img_cropped)
+
             edges = cv2.Canny(img_cropped, 75,150)
 
-
-            cv2.imwrite('Dataset/train/Y/' +  name + '.jpg', edges)
-        
+            cv2.imwrite('Dataset/train/1/' +  name + '.jpg', edges)     
         
 
     def displayImage(self, img, window=1):
