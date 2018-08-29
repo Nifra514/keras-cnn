@@ -9,17 +9,13 @@ import numpy as np
 import cv2
 import tutorial
 import datetime
+       
 
-
-        
-
-class prediction(QtWidgets.QMainWindow):
+class image_cap(QtWidgets.QMainWindow):
     def __init__(self):
-        super(prediction,self).__init__()
-        loadUi('UI/prediction.ui',self)     
-        self.timer = QtCore.QTimer()
-        self.timer.timeout.connect(self.update_time)
-        self.timer.start(10)
+        super(image_cap,self).__init__()
+        loadUi('UI/image_cap.ui',self)     
+    
         self.cap = cv2.VideoCapture(0)
         self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT,480)
         self.cap.set(cv2.CAP_PROP_FRAME_WIDTH,720)
@@ -30,11 +26,6 @@ class prediction(QtWidgets.QMainWindow):
         self.btn_snap.clicked.connect(self.snap)
         self.btn_back.clicked.connect(self.back)
 
-    def update_time(self):
-        self.lbl_time.setText(QtCore.QTime.currentTime().toString())
-        self.lbl_date.setText(QtCore.QDate.currentDate().toString())
-
-    
     def update_frame(self):
         
         ret, self.image = self.cap.read()            
@@ -87,8 +78,8 @@ class prediction(QtWidgets.QMainWindow):
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
-    prediction = prediction()
-    prediction.show()
+    image_cap = image_cap()
+    image_cap.show()
     sys.exit(app.exec_())
 
 
